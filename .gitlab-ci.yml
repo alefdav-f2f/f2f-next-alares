@@ -1,0 +1,125 @@
+image: docker:20.10.17
+
+variables:
+  projectName: "site"
+  namespace: "frontend"
+  registryUrl: 381492044651.dkr.ecr.sa-east-1.amazonaws.com
+
+stages:
+  - build
+  - homologation
+  - production
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"
+      when: never
+    - if: $CI_COMMIT_BRANCH == "homolog"
+    - if: $CI_COMMIT_TAG =~ /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
+
+first_job:
+  stage: .pre
+  tags:
+  - docker
+  - shared
+  script:
+    - echo $CI_COMMIT_REF_NAME
+    - echo "imageTag=$(echo $CI_COMMIT_REF_NAME | sed -e 's|.*/||ig')" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+
+docker_build/push_hmg:
+  stage: build
+  tags:
+    - docker
+    - shared  
+  services:
+    - name: docker:20.10.17-dind
+      entrypoint: ["dockerd-entrypoint.sh", "--tls=false"]
+  variables:
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_PROD
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_PROD
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION_PROD
+    DOCKER_DRIVER: overlay2
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - apk update && apk upgrade
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - export PATH=$PATH:/root/.local/bin
+    - aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin $registryUrl
+  script:
+    - docker build --build-arg NODE_ENV=$NODE_ENV_HMG --build-arg NEXTAUTH_URL=$NEXTAUTH_URL_HMG --build-arg NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL_HMG --build-arg NEXTAUTH_SECRET=$NEXTAUTH_SECRET_HMG -t $registryUrl/$projectName:$imageTag -f Dockerfile .
+    - docker push $registryUrl/$projectName:$imageTag
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "homolog"'
+ 
+deploy_homolog:
+  stage: homologation
+  tags:
+    - docker
+    - shared
+  image: 
+    name: public.ecr.aws/r7u9z7n3/pipe-tools:latest
+  variables:  
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_HMG
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_HMG
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION_HMG
+  before_script:
+    - aws eks update-kubeconfig --name alares-hmg-eks --region $AWS_DEFAULT_REGION_HMG
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION_PROD | helm registry login --username AWS --password-stdin 381492044651.dkr.ecr.sa-east-1.amazonaws.com
+  script:
+    - |
+      helm upgrade --install -f values.yaml $projectName oci://381492044651.dkr.ecr.sa-east-1.amazonaws.com/kubeapps --timeout 0 --set environment=hmg,tag=$imageTag --version $PIPELINE_HELM_VERSION
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "homolog"'
+
+
+docker_build/push_prd:
+  stage: build
+  tags:
+    - docker
+    - shared  
+  services:
+    - name: docker:20.10.17-dind
+      entrypoint: ["dockerd-entrypoint.sh", "--tls=false"]
+  variables:
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_PROD
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_PROD
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION_PROD
+    DOCKER_DRIVER: overlay2
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - apk update && apk upgrade
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - export PATH=$PATH:/root/.local/bin
+    - aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin $registryUrl
+  script:
+    - docker build --build-arg NODE_ENV=$NODE_ENV_PROD --build-arg NEXTAUTH_URL=$NEXTAUTH_URL_PROD --build-arg NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL_PROD --build-arg NEXTAUTH_SECRET=$NEXTAUTH_SECRET_PROD -t $registryUrl/$projectName:$imageTag -f Dockerfile .
+    - docker push $registryUrl/$projectName:$imageTag
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^([0-9]+)\.([0-9]+)\.([0-9]+)$/'
+
+deploy_production:
+  stage: production
+  tags:
+    - docker
+    - shared
+  image: 
+    name: public.ecr.aws/r7u9z7n3/pipe-tools:latest
+  variables:  
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_PROD
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_PROD
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION_PROD
+  before_script:
+    - aws eks update-kubeconfig --name alares-prd-eks --region $AWS_DEFAULT_REGION_PROD
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION_PROD | helm registry login --username AWS --password-stdin 381492044651.dkr.ecr.sa-east-1.amazonaws.com
+  script:
+    - |
+      helm upgrade --install -f values.yaml $projectName oci://381492044651.dkr.ecr.sa-east-1.amazonaws.com/kubeapps --timeout 0 --set environment=prod,tag=$imageTag --version $PIPELINE_HELM_VERSION
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^([0-9]+)\.([0-9]+)\.([0-9]+)$/'

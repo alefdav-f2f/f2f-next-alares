@@ -1,0 +1,64 @@
+projectName: site
+namespace: frontend
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "400m"
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+serviceAccount: false
+secrets: {}
+
+configmaps:
+  hmg:
+    TZ: "America/Sao_Paulo"
+
+  prod:
+    TZ: "America/Sao_Paulo"
+
+deployment: 
+  containerPort: 3000
+  readinessProbe:
+    healthPath: /
+    failureThreshold: 3
+    initialDelaySeconds: 25
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 5
+  livenessProbe:
+    healthPath: /
+    failureThreshold: 3
+    initialDelaySeconds: 30
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 5
+  lifecycle:
+    preStop:
+      exec:
+        command:
+        - /bin/sleep
+        - "30"  
+
+  hpa: 
+    minReplicas: 2
+    maxReplicas: 10
+    # percentageLimit: 80
+    # cpuAverage: 160
+    # memoryAverage: 160
+  ingress: 
+    hmg:
+      type: public
+
+    prod:
+      type: public
+      domain: 
+        - alaresinternet.com.br
+      host: 
+        - site
