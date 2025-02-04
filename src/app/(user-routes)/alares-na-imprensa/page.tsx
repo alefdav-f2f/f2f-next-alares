@@ -12,7 +12,7 @@ import Footer from '@/app/components/Footer';
 export default function SalaImprensa() {
   const [posts, setPosts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
-  
+  // teste
   React.useEffect(() => {
     const fetchPosts = async () => {
       try {
