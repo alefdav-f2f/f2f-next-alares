@@ -4,15 +4,17 @@ import React, { useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
 
 import logo from '@/img/alares-icon2.png'
+import bar from '@/img/bar-imprensa.png'
+import contatoImprensa from '@/img/email-imprensa.png'
 import axiosInterceptorInstance from '@/app/api/axiosInterceptor';
-import { useRouter, useSearchParams } from 'next/navigation';
 import Contact2 from '@/app/components/Contact2';
 import Footer from '@/app/components/Footer';
+
 
 export default function SalaImprensa() {
   const [posts, setPosts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
-  // teste
+  
   React.useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -110,28 +112,28 @@ export default function SalaImprensa() {
     return (
       <div className="max-w-[1200px] mx-auto py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">
+          <h2 className="text-4xl font-bold text-[#363643]">
             Alares na mídia: <span className="font-normal">matérias e publicações</span>
-          </h1>
+          </h2>
           <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full">
             
           </button>
         </div>
         
-        <p className="text-gray-600 mb-8">
+        <p className="text-[#363643] mb-8">
           Confira as principais inserções da Alares na mídia.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {postsFixed.map(post => (
-            <div key={post.id} className="bg-white rounded-br-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
+            <div key={post.id} className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
               <div className="relative">
                 <Image 
                   src={post.acf_fields.banner_principal} 
                   alt={post.title}
                   width={400}
                   height={250}
-                  className="w-full h-[200px] object-cover border border-gray-200 rounded-br-lg bg-white"
+                  className="w-full h-[200px] object-cover border border-gray-200 rounded-br-3xl bg-white"
                 />
               </div>
               
@@ -161,52 +163,54 @@ export default function SalaImprensa() {
 
   function renderPostsAPI() {
     return (
-      <div className="max-w-[1200px] mx-auto py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">
-            Alares em foco: <span className="font-normal">últimos releases</span>
-          </h1>
-          <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full">
-            MAIS RELEASES
-          </button>
-        </div>
-        
-        <p className="text-gray-600 mb-8">
-          Veja as novidades, lançamentos de produtos, comunicados e iniciativas corporativas mais recentes da Alares.
-        </p>
+      <div className='my-10 py-20 bg-[#F1F1FA]'>
+        <div className="max-w-[1200px] mx-auto ">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-4xl font-bold text-[#363643]">
+              Alares em foco: <span className="font-normal">últimos releases</span>
+            </h2>
+            <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full">
+              MAIS RELEASES
+            </button>
+          </div>
+          
+          <p className="text-[#363643] mb-8">
+            Veja as novidades, lançamentos de produtos, comunicados e iniciativas corporativas mais recentes da Alares.
+          </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {posts.map(post => (
-            <div key={post.id} className="bg-white rounded-br-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
-              <div className="relative">
-                <Image 
-                  src={post.acf_fields.banner_principal} 
-                  alt={post.title}
-                  width={400}
-                  height={250}
-                  className="w-full h-[200px] object-cover border border-gray-200 rounded-br-lg bg-white"
-                />
-              </div>
-              
-              <div className="p-6">
-                <div className="text-center text-gray-500 text-sm">
-                  {new Date(post.date).toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                  })}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {posts.map(post => (
+              <div key={post.id} className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
+                <div className="relative">
+                  <Image 
+                    src={post.acf_fields.banner_principal} 
+                    alt={post.title}
+                    width={400}
+                    height={250}
+                    className="w-full h-[200px] object-cover border border-gray-200 rounded-br-3xl bg-white"
+                  />
                 </div>
-                <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
-                <div 
-                  className="text-gray-600 mb-4 line-clamp-3" 
-                  dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                />
-                <a href={post.link} className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
-                  LER MAIS 
-                </a>
+                
+                <div className="p-6">
+                  <div className="text-center text-gray-500 text-sm">
+                    {new Date(post.date).toLocaleDateString('pt-BR', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric'
+                    })}
+                  </div>
+                  <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
+                  <div 
+                    className="text-gray-600 mb-4 line-clamp-3" 
+                    dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                  />
+                  <a href={post.link} className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
+                    LER MAIS 
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -214,7 +218,14 @@ export default function SalaImprensa() {
 
   return (
     <div>
-      <div className='h-[150px] flex justify-center items-center bg-[#3C34F2]'>
+      <div 
+        className='h-[150px] flex justify-center items-center bg-[#3C34F2] relative'
+        style={{
+          backgroundImage: `url(${bar.src})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className='max-w-[1200px] lg:w-[1200px] w-full flex justify-between items-center'>
           <div className=''>
             <div className='flex items-center'>
@@ -223,11 +234,18 @@ export default function SalaImprensa() {
               <span className='text-sm text-white'>SERVIÇOS ADICIONAIS</span>
             </div>
           </div>
-          <div className='sm:flex hidden h-[150px]'>
-            <Image src={logo} alt={''} className='object-none h-[150px]' />
-          </div>
         </div>
       </div>
+
+      <div className="max-w-[1200px] lg:w-[1200px] w-full mx-auto flex flex-col justify-between items-start mt-8 mb-8">
+          <h1 className="text-5xl font-bold text-[#363643] mb-2">
+            Sala de imprensa
+          </h1>
+
+          <p className="text-[#363643] mb-8">
+            O suporte para jornalistas e profissionais de mídia com informações oficiais sobre a Alares.
+          </p>
+        </div>
 
 
       {renderPosts()}
@@ -238,7 +256,66 @@ export default function SalaImprensa() {
         renderPostsAPI()
       )}
 
+      <div className='max-w-[900px] lg:w-[900px] mx-auto w-full flex justify-between min-h-[430px] relative z-10'
+      style={{
+          backgroundImage: `url(${contatoImprensa.src})`,
+          backgroundSize: 'contain',
+          backgroundPosition: '90%',
+          backgroundRepeat: 'no-repeat'
+        }}>
+        <div className='flex flex-col gap-4 w-1/2 mt-[55px]'>
+
+
+          <h2 className='text-2xl font-bold text-[#363643]'>
+            Contato para a imprensa
+          </h2>
+
+          <p className='text-[#363643]'>
+            Se você é jornalista ou trabalha na imprensa e precisa falar conosco, entre em contato com a nossa assessoria:
+          </p>
+
+          <div className='flex flex-col gap-1 bg-[#F1F1FA] p-4 rounded-br-3xl'>
+            <span className='font-bold'>RPMA Comunicação</span> 
+            <span className='font-bold'>+55 99 99988 0011</span>
+            <span className='font-bold'>alares@rpmacomunicacao.com.br</span>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <div className='bg-[#F1F1FA] mt-[-52px] py-20 mb-8'>
+        <div className='max-w-[1200px] lg:w-[1200px] mx-auto w-full flex flex-col justify-center min-h-[430px] items-center'>
+          <h2 className="text-2xl text-center font-bold text-[#363643] w-1/3">
+              Newsletter Indo Além: <span className="font-normal">receba nossos conteúdos exclusivos</span>
+            </h2>
+
+            <div className="flex flex-col items-end w-3/4 mt-8 rounded-br-3xl rounded-tr-3xl rounded-bl-3xl bg-white p-8">
+              <div className="w-full flex items-end gap-4">
+                
+                <div className='flex flex-col gap-1 w-1/2'>
+                  <label htmlFor="email">Seu e-mail</label>
+                  <input 
+                  type="email" 
+                  placeholder="Digite seu e-mail" 
+
+                  className=" h-[35px] px-4 py-3 rounded-br-xl rounded-tr-xl border border-gray-200 focus:outline-none focus:border-[#00F0B5]"
+                />
+                </div>
+                <button className="bg-main h-[35px] text-white rounded-full hover:bg-[#00F0B5] hover:text-black font-bold w-1/2">
+                  INSCREVER-SE
+
+
+                </button>
+              </div>
+              
+            </div>
+        </div>
+        
+      </div>
       <div>
+
         <Contact2 />
       </div>
 
