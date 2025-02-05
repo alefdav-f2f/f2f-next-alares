@@ -27,10 +27,7 @@ export default function SalaImprensa() {
   React.useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axiosInterceptorInstance.get(
-          'https://alaresinternet.com.br/indoalem/wp-json/custom/v1/posts/category/alares-em-foco?per_page=4'
-        );
-        
+        const response = await axiosInterceptorInstance.get('https://alaresinternet.com.br/indoalem/wp-json/custom/v1/posts/category/alares-em-foco?per_page=4');
         setPosts(response.data.posts);
       } catch (error) {
         console.error('Erro:', error);
