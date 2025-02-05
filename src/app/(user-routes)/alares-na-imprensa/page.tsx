@@ -177,10 +177,11 @@ export default function SalaImprensa() {
                       className="text-gray-600 mb-4 line-clamp-3" 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <a href={post.link} className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
+                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
                       LER MAIS 
                     </a>
                   </div>
+
                 </div>
               </CarouselItem>
             ))}
@@ -239,10 +240,11 @@ export default function SalaImprensa() {
                       className="text-gray-600 mb-4 line-clamp-3" 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <a href={post.link} className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
+                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
                       LER MAIS 
                     </a>
                   </div>
+
                 </div>
               ))}
             </div>
