@@ -60,7 +60,7 @@ export default function SalaImprensa() {
         "link": "https://www.estadao.com.br/economia/coluna-do-broad/alares-busca-equilibrio-entre-crescimento-e-reducao-da-divida/",
         "date": "2025-01-22T11:17:40+00:00",
         "acf_fields": {
-            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-1-2.png",
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/Alares-busca-equilibrio-entre-crescimento-e-reducao-da-divida-scaled.jpg",
         }
     },
     {
@@ -100,7 +100,7 @@ export default function SalaImprensa() {
         "link": "https://telesintese.com.br/alares-conclui-aquisicao-da-azza-telecom-e-se-torna-o-4-maior-isp-do-estado-de-sao-paulo/#google_vignette",
         "date": "2024-10-01T11:17:40+00:00",
         "acf_fields": {
-            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-1-2.png",
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/Alares-conclui-aquisicao-da-Azza-Telecom-e-se-torna-o-4°-maior-ISP-do-estado-de-Sao-Paulo-scaled.jpg",
         }
     },
     {
@@ -110,7 +110,7 @@ export default function SalaImprensa() {
         "link": "https://teletime.com.br/15/08/2024/aquisicoes-trazem-aumento-de-receita-a-alares/",
         "date": "2024-08-15T11:17:40+00:00",
         "acf_fields": {
-            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-1-2.png",
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/Aquisicoes-trazem-aumento-de-receita-a-Alares-scaled.jpg",
         }
     },
     {
