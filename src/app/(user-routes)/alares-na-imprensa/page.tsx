@@ -46,7 +46,7 @@ export default function SalaImprensa() {
     {
         "id": 1,
         "title": "Alares enfatiza liderança em velocidade de banda larga",
-        "excerpt": "A Alares, operadora de telecomunicações sediada em São Paulo (SP) e presente em 228 cidades de 7 estados brasileiros, iniciou uma campanha de marketing em que comunica a ultravelocidade de sua conexão de banda larga fixa, sendo a internet mais rápida na maioria dos estados onde está presente.",
+        "excerpt": "Grandes Nomes da Propaganda",
         "link": "https://grandesnomesdapropaganda.com.br/mercado-digital/alares-enfatiza-lideranca-em-velocidade-de-banda-larga/",
         "date": "2025-01-27T11:17:40+00:00",
         "acf_fields": {
@@ -56,7 +56,7 @@ export default function SalaImprensa() {
     {
         "id": 2,
         "title": "Alares busca equilíbrio entre crescimento e redução da dívida",
-        "excerpt": "Uma das maiores do País em internet fixa, empresa pretende investir em novas aquisições",
+        "excerpt": "Estadão Online",
         "link": "https://www.estadao.com.br/economia/coluna-do-broad/alares-busca-equilibrio-entre-crescimento-e-reducao-da-divida/",
         "date": "2025-01-22T11:17:40+00:00",
         "acf_fields": {
@@ -66,7 +66,7 @@ export default function SalaImprensa() {
     {
         "id": 3,
         "title": "Alares inclui Wi-Fi 7 na banda larga residencial e amplia rede XGS-PON",
-        "excerpt": "A Alares está iniciando a partir de Natal (RN) a oferta de pacotes de banda larga residencial com equipamentos Wi-Fi 7, em projeto com expansão comercial prevista para 2025 e que também envolve a ampliação da tecnologia XGS-PON nas redes de fibra da empresa.",
+        "excerpt": "Teletime",
         "link": "https://teletime.com.br/09/12/2024/alares-inclui-wi-fi-7-na-banda-larga-residencial-e-amplia-rede-xgs-pon/",
         "date": "2024-12-09T11:17:40+00:00",
         "acf_fields": {
@@ -76,7 +76,7 @@ export default function SalaImprensa() {
     {
         "id": 4,
         "title": "Carnatal 2024: internet oficial do evento traz tecnologia de última geração",
-        "excerpt": "O Carnatal 2024, festa considerada o maior Carnaval fora de época do mundo, novamente agita Natal, nos dias 6, 7 e 8 de dezembro. A Alares, operadora de telecomunicações presente em 7 estados do Brasil, será a internet oficial do evento. Além de patrocinadora, a empresa também garante toda a infraestrutura de conexão à internet para a organização do Carnatal, desde os palcos ao som, passando por bilheteria, paineis de Led, até a conexão usada nas transmissões de rádio e TV.",
+        "excerpt": "Tribuna do Norte",
         "link": "https://tribunadonorte.com.br/especiais-tribuna-do-norte/carnatal/carnatal-2024-internet-oficial-do-evento-traz-tecnologia-de-ultima-geracao/",
         "date": "2024-12-05T11:17:40+00:00",
         "acf_fields": {
@@ -86,7 +86,7 @@ export default function SalaImprensa() {
     {
         "id": 5,
         "title": "Alares abre loja modelo no RN com novo conceito de atendimento",
-        "excerpt": "A Alares, que atua em diversas cidades brasileiras, inaugurou uma nova loja em Pipa, Tibau do Sul (RN), como parte de seu projeto piloto de modernização das lojas. Segundo a empresa, a iniciativa tem como objetivo testar um conceito mais tecnológico e eficiente de atendimento, que será replicado nas outras 125 unidades da empresa no país.",
+        "excerpt": "Ponto ISP",
         "link": "https://www.pontoisp.com.br/alares-abre-loja-modelo-no-rn-com-novo-conceito-de-atendimento/",
         "date": "2024-11-26T11:17:40+00:00",
         "acf_fields": {
@@ -96,7 +96,7 @@ export default function SalaImprensa() {
     {
         "id": 6,
         "title": "Alares conclui aquisição da Azza Telecom e se torna o 4° maior ISP do estado de São Paulo",
-        "excerpt": "Com 320 mil assinantes, São Paulo se consolida como maior mercado da operadora, presente em 7 estados e 228 cidades",
+        "excerpt": "TeleSíntese",
         "link": "https://telesintese.com.br/alares-conclui-aquisicao-da-azza-telecom-e-se-torna-o-4-maior-isp-do-estado-de-sao-paulo/#google_vignette",
         "date": "2024-10-01T11:17:40+00:00",
         "acf_fields": {
@@ -106,7 +106,7 @@ export default function SalaImprensa() {
     {
         "id": 7,
         "title": "Aquisições trazem aumento de receita à Alares",
-        "excerpt": "A operadora de banda larga Alares divulgou nesta quarta, 14, seus resultados financeiros e operacionais do segundo trimestre. A empresa registrou receita líquida de R$ 176,1 milhões no período, crescimento de 34% em relação ao mesmo período de 2023. A razão para o aumento foi a incorporação da base de clientes da Webby.",
+        "excerpt": "Teletime",
         "link": "https://teletime.com.br/15/08/2024/aquisicoes-trazem-aumento-de-receita-a-alares/",
         "date": "2024-08-15T11:17:40+00:00",
         "acf_fields": {
@@ -116,7 +116,7 @@ export default function SalaImprensa() {
     {
         "id": 8,
         "title": "Alares cria a Alares Empresas, de olho em ISPs e B2B",
-        "excerpt": "Com Alares Empresas, grupo amplia esforço para diversificar e ampliar geração de receitas. Unidade foca ISPs com atacado, PMEs, governos e setor empresarial.",
+        "excerpt": "TeleSíntese",
         "link": "https://blog-alares.homolog-f2f-digital.xyz/tendencia-informacao/filmes-para-assistir-dia-da-consciencia-negra/",
         "date": "2024-06-12T11:17:40+00:00",
         "acf_fields": {
