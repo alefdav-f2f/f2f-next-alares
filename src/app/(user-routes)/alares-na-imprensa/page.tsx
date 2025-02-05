@@ -2,6 +2,13 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 import logo from '@/img/alares-icon2.png';
 import bar from '@/img/bar-imprensa.png';
@@ -37,77 +44,85 @@ export default function SalaImprensa() {
 
   const postsFixed = [
     {
-        "id": 5082,
-        "title": "4 filmes para assistir no Dia da Consciência Negra",
-        "excerpt": "O Dia da Consciência Negra, celebrado em 20 de novembro no Brasil, homenageia Zumbi dos Palmares, líder quilombola e ícone negro brasileiro, e relembra a importância da resistência negra histórica. Arte é algo que, desde os tempos mais antigos, faz o ser humano refletir. Seja sobre sentimentos, acontecimentos ou questões sociais, ela – em todas [&hellip;]",
-        "link": "https://blog-alares.homolog-f2f-digital.xyz/tendencia-informacao/filmes-para-assistir-dia-da-consciencia-negra/",
-        "featured_image": false,
-        "date": "2024-11-19T11:17:40+00:00",
-        "categories": [
-            "Tendência e informação"
-        ],
+        "id": 1,
+        "title": "Alares enfatiza liderança em velocidade de banda larga",
+        "excerpt": "A Alares, operadora de telecomunicações sediada em São Paulo (SP) e presente em 228 cidades de 7 estados brasileiros, iniciou uma campanha de marketing em que comunica a ultravelocidade de sua conexão de banda larga fixa, sendo a internet mais rápida na maioria dos estados onde está presente.",
+        "link": "https://grandesnomesdapropaganda.com.br/mercado-digital/alares-enfatiza-lideranca-em-velocidade-de-banda-larga/",
+        "date": "2025-01-27T11:17:40+00:00",
         "acf_fields": {
-            "descricao": "<p><span style=\"font-weight: 400\">Descubra os melhores filmes para celebrar o Dia da Consciência Negra. Conheça personagens inspiradores e histórias emocionantes!</span></p>\n",
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/250127-Campanha-Velocidade.png",
+        }
+    },
+    {
+        "id": 2,
+        "title": "Alares busca equilíbrio entre crescimento e redução da dívida",
+        "excerpt": "Uma das maiores do País em internet fixa, empresa pretende investir em novas aquisições",
+        "link": "https://www.estadao.com.br/economia/coluna-do-broad/alares-busca-equilibrio-entre-crescimento-e-reducao-da-divida/",
+        "date": "2025-01-22T11:17:40+00:00",
+        "acf_fields": {
             "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-1-2.png",
-            "banner_principal_mobile": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-2-2.png",
-            "tempo_de_leitura": "",
-            "is_app_post": ""
         }
     },
     {
-        "id": 2725,
-        "title": "9 plataformas de streaming para você aproveitar em 2024",
-        "excerpt": "Plataformas de streaming são serviços online que permitem aos usuários assistir a vídeos, filmes, séries e ouvir músicas, sem a necessidade de fazer download, oferecendo conteúdo sob demanda. Segundo estudo realizado pela Hibou, empresa de pesquisa e insights de mercado e consumo, 7 em cada 10 brasileiros assinam plataformas de streaming. Esses dados revelam que [&hellip;]",
-        "link": "https://blog-alares.homolog-f2f-digital.xyz/tendencia-informacao/plataformas-streaming-2024/",
-        "featured_image": false,
-        "date": "2024-09-11T11:00:15+00:00",
-        "categories": [
-            "Tendência e informação"
-        ],
+        "id": 3,
+        "title": "Alares inclui Wi-Fi 7 na banda larga residencial e amplia rede XGS-PON",
+        "excerpt": "A Alares está iniciando a partir de Natal (RN) a oferta de pacotes de banda larga residencial com equipamentos Wi-Fi 7, em projeto com expansão comercial prevista para 2025 e que também envolve a ampliação da tecnologia XGS-PON nas redes de fibra da empresa.",
+        "link": "https://teletime.com.br/09/12/2024/alares-inclui-wi-fi-7-na-banda-larga-residencial-e-amplia-rede-xgs-pon/",
+        "date": "2024-12-09T11:17:40+00:00",
         "acf_fields": {
-            "descricao": "<p><span style=\"font-weight: 400\">Se você está em busca de entretenimento, precisa conhecer nossas dicas de plataformas de streaming!</span></p>\n",
-            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2023/10/shutterstock_2179958927-scaled-2.jpg",
-            "banner_principal_mobile": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2023/10/Screenshot-2023-10-26-at-11.30.55-e1700770255853-1.png",
-            "tempo_de_leitura": "8",
-            "is_app_post": ""
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/241209-Wi-Fi-7-no-Carnatal.jpg",
         }
     },
     {
-        "id": 4780,
-        "title": "Filmes para o Dia dos Pais: dicas imperdíveis",
-        "excerpt": "O Dia dos Pais é uma data especial para agradecer a todos os pais por seu amor, carinho e dedicação. E qual a melhor maneira de celebrar esse momento, se não com uma sessão incrível de filmes? Por isso, abaixo, selecionamos algumas dicas imperdíveis de filmes para o Dia dos Pais. Afinal, nada como aproveitar [&hellip;]",
-        "link": "https://blog-alares.homolog-f2f-digital.xyz/tendencia-informacao/filmes-para-o-dia-dos-pais-dicas-imperdiveis/",
-        "featured_image": false,
-        "date": "2024-08-08T13:51:17+00:00",
-        "categories": [
-            "Tendência e informação"
-        ],
+        "id": 4,
+        "title": "Carnatal 2024: internet oficial do evento traz tecnologia de última geração",
+        "excerpt": "O Carnatal 2024, festa considerada o maior Carnaval fora de época do mundo, novamente agita Natal, nos dias 6, 7 e 8 de dezembro. A Alares, operadora de telecomunicações presente em 7 estados do Brasil, será a internet oficial do evento. Além de patrocinadora, a empresa também garante toda a infraestrutura de conexão à internet para a organização do Carnatal, desde os palcos ao som, passando por bilheteria, paineis de Led, até a conexão usada nas transmissões de rádio e TV.",
+        "link": "https://tribunadonorte.com.br/especiais-tribuna-do-norte/carnatal/carnatal-2024-internet-oficial-do-evento-traz-tecnologia-de-ultima-geracao/",
+        "date": "2024-12-05T11:17:40+00:00",
         "acf_fields": {
-            "descricao": "<p><span style=\"font-weight: 400\">Descubra os melhores filmes para o Dia dos Pais com nossa seleção especial! Histórias inspiradoras de pais marcantes no Max, Paramount+, Telecine e Globoplay.</span></p>\n",
-            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/08/filmes-para-o-dia-dos-pais-banner-min-2.png",
-            "banner_principal_mobile": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/08/filmes-para-o-dia-dos-pais-mobile-min-2.png",
-            "tempo_de_leitura": "6",
-            "is_app_post": ""
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/241205-Patrocinio-Carnatal-1.jpg",
         }
     },
     {
-        "id": 1119,
-        "title": "Wi-Fi 6: o que é e quais as vantagens dessa tecnologia",
-        "excerpt": "Wi-Fi 6 é a sexta geração do padrão de redes sem fio. Ele oferece maior velocidade, eficiência e cobertura, especialmente em ambientes com muitos dispositivos conectados. De acordo com uma pesquisa realizada, em 2023, pelo Centro Regional de Estudos para o Desenvolvimento da Sociedade da Informação, instituição que monitora a adoção das tecnologias de informação [&hellip;]",
-        "link": "https://blog-alares.homolog-f2f-digital.xyz/tendencia-informacao/wi-fi-6/",
-        "featured_image": false,
-        "date": "2024-07-12T09:00:01+00:00",
-        "categories": [
-            "Tendência e informação"
-        ],
+        "id": 5,
+        "title": "Alares abre loja modelo no RN com novo conceito de atendimento",
+        "excerpt": "A Alares, que atua em diversas cidades brasileiras, inaugurou uma nova loja em Pipa, Tibau do Sul (RN), como parte de seu projeto piloto de modernização das lojas. Segundo a empresa, a iniciativa tem como objetivo testar um conceito mais tecnológico e eficiente de atendimento, que será replicado nas outras 125 unidades da empresa no país.",
+        "link": "https://www.pontoisp.com.br/alares-abre-loja-modelo-no-rn-com-novo-conceito-de-atendimento/",
+        "date": "2024-11-26T11:17:40+00:00",
         "acf_fields": {
-            "descricao": "<p>Entenda por que a tecnologia Wi-Fi 6 é uma excelente opção para você e sua família terem uma experiência única de navegação.</p>\n",
-            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2023/05/Desktop-1600-x-434-px_v1-2-2.png",
-            "banner_principal_mobile": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2023/05/Mobile-960-x-991-px-3-2.png",
-            "tempo_de_leitura": "4",
-            "is_app_post": ""
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/241126-Loja-modelo-RN.jpeg",
         }
-    }
+    },
+    {
+        "id": 6,
+        "title": "Alares conclui aquisição da Azza Telecom e se torna o 4° maior ISP do estado de São Paulo",
+        "excerpt": "Com 320 mil assinantes, São Paulo se consolida como maior mercado da operadora, presente em 7 estados e 228 cidades",
+        "link": "https://telesintese.com.br/alares-conclui-aquisicao-da-azza-telecom-e-se-torna-o-4-maior-isp-do-estado-de-sao-paulo/#google_vignette",
+        "date": "2024-10-01T11:17:40+00:00",
+        "acf_fields": {
+            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-1-2.png",
+        }
+    },
+    {
+        "id": 7,
+        "title": "Aquisições trazem aumento de receita à Alares",
+        "excerpt": "A operadora de banda larga Alares divulgou nesta quarta, 14, seus resultados financeiros e operacionais do segundo trimestre. A empresa registrou receita líquida de R$ 176,1 milhões no período, crescimento de 34% em relação ao mesmo período de 2023. A razão para o aumento foi a incorporação da base de clientes da Webby.",
+        "link": "https://teletime.com.br/15/08/2024/aquisicoes-trazem-aumento-de-receita-a-alares/",
+        "date": "2024-08-15T11:17:40+00:00",
+        "acf_fields": {
+            "banner_principal": "https://blog-alares.homolog-f2f-digital.xyz/wp-content/uploads/2024/11/consciencia-negra-1-2.png",
+        }
+    },
+    {
+        "id": 8,
+        "title": "Alares cria a Alares Empresas, de olho em ISPs e B2B",
+        "excerpt": "Com Alares Empresas, grupo amplia esforço para diversificar e ampliar geração de receitas. Unidade foca ISPs com atacado, PMEs, governos e setor empresarial.",
+        "link": "https://blog-alares.homolog-f2f-digital.xyz/tendencia-informacao/filmes-para-assistir-dia-da-consciencia-negra/",
+        "date": "2024-06-12T11:17:40+00:00",
+        "acf_fields": {
+            "banner_principal": "https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/240612-Alares-Empresas.jpg",
+        }
+    },
 ];
 
   function renderPosts() {
@@ -123,44 +138,56 @@ export default function SalaImprensa() {
           Confira as principais inserções da Alares na mídia.
         </p>
 
-        <div className="w-full overflow-x-auto pb-6 -mx-4 px-4 md:mx-0 md:px-0 md:overflow-x-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 min-w-max md:min-w-0">
-          {postsFixed.map(post => (
-            <div key={post.id} className="w-[280px] md:w-auto bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
-              <div className="relative">
-                <Image 
-                  src={post.acf_fields.banner_principal} 
-                  alt={post.title}
-                  width={400}
-                  height={250}
-                  className="w-full h-[200px] object-cover border border-gray-200 rounded-br-3xl bg-white"
-                />
-              </div>
-              
-              <div className="p-6">
-                <div className="text-center text-gray-500 text-sm">
-                  {new Date(post.date).toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                  })}
-                </div>
-                <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
-                <div 
-                  className="text-gray-600 mb-4 line-clamp-3" 
-                  dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                />
-                <a href={post.link} className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
-                  LER MAIS 
-                </a>
-              </div>
-            </div>
-          ))}
+        <Carousel 
+          className="w-full"
+          opts={{
+            align: "start",
+            slidesToScroll: 1,
+            containScroll: "trimSnaps"
+          }}
+        >
+          <div className="hidden sm:flex justify-end mb-4">
+            <CarouselPrevious className="relative top-0 right-0 left-[-10px] text-black bg-[#00F0B5] rounded-none rounded-l-full hover:bg-main hover:text-white" />
+            <CarouselNext className="relative top-0 right-0 text-black bg-[#00F0B5] rounded-none rounded-r-full hover:bg-main hover:text-white" />
           </div>
-        </div>
+          <CarouselContent className="-ml-4">
+            {postsFixed.map(post => (
+              <CarouselItem key={post.id} className="pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
+                  <div className="relative">
+                    <Image 
+                      src={post.acf_fields.banner_principal} 
+                      alt={post.title}
+                      width={400}
+                      height={250}
+                      className="w-full h-[200px] object-cover border border-gray-200 rounded-br-3xl bg-white"
+                    />
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="text-center text-gray-500 text-sm">
+                      {new Date(post.date).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                      })}
+                    </div>
+                    <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
+                    <div 
+                      className="text-gray-600 mb-4 line-clamp-3" 
+                      dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                    />
+                    <a href={post.link} className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
+                      LER MAIS 
+                    </a>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     );
-
   }
 
   function renderPostsAPI() {
@@ -240,7 +267,7 @@ export default function SalaImprensa() {
             <div className='flex items-center'>
               <span className='text-sm font-medium text-sub'>HOME</span>
               <IoIosArrowForward className='text-white' />
-              <span className='text-sm text-white'>SERVIÇOS ADICIONAIS</span>
+              <span className='text-sm text-white'>SALA DE IMPRENSA</span>
             </div>
           </div>
         </div>
