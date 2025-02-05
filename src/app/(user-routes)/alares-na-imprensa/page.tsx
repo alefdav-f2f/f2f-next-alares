@@ -152,7 +152,7 @@ export default function SalaImprensa() {
           </div>
           <CarouselContent className="-ml-4">
             {postsFixed.map(post => (
-              <CarouselItem key={post.id} className="pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+              <CarouselItem key={post.id} className="pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pb-2">
                 <div className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
                   <div className="relative">
                     <Image 
@@ -174,7 +174,7 @@ export default function SalaImprensa() {
                     </div>
                     <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
                     <div 
-                      className="text-gray-600 mb-4 line-clamp-3" 
+                      className="text-gray-600 mb-4 line-clamp-3 text-center text-sm " 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
                     <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
