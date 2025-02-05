@@ -6,12 +6,14 @@ interface props {
     children: React.ReactNode
 }
 
-const description = "Contrate serviços adicionais e use seu plano de internet Alares com aplicativos de streaming, educação, segurança digital, saúde e bem-estar. Conheça!"
+const description = "Alares na imprensa | Alares Internet"
 export const metadata: Metadata = {
     title: {
-        absolute: `Serviços adicionais para sua internet | Alares Internet`
+        absolute: `Alares na imprensa | Alares Internet`
+
     },
     description: description,
+
     openGraph: {
         description: description,
         type: "website",
