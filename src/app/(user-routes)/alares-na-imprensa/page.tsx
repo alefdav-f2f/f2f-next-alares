@@ -28,7 +28,7 @@ export default function SalaImprensa() {
     const fetchPosts = async () => {
       try {
         const response = await axiosInterceptorInstance.get(
-          'https://blog-alares.homolog-f2f-digital.xyz/wp-json/custom/v1/posts/category/tendencia-informacao?per_page=4'
+          'https://alaresinternet.com.br/indoalem/wp-json/custom/v1/posts/category/alares-em-foco?per_page=4'
         );
         
         setPosts(response.data.posts);
