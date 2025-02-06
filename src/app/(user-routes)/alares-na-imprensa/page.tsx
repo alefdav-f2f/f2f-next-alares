@@ -378,7 +378,8 @@ export default function SalaImprensa() {
 
           <div className='flex flex-col gap-1 bg-[#F1F1FA] p-8 rounded-br-3xl'>
             <span className='font-bold'>RPMA Comunicação</span> 
-            <span className='font-bold'>+55 99 99988 0011</span>
+            <span className='font-bold'>+55 (11) 5501-4655 (fixo)</span>
+            <span className='font-bold'>+55 (14) 99807-1006 (Whatsapp)</span>
             <span className='font-bold'>alares@rpmacomunicacao.com.br</span>
           </div>
 
