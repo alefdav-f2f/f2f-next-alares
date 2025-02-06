@@ -18,11 +18,30 @@ import axiosInterceptorInstance from '@/app/api/axiosInterceptor';
 import Footer from '@/app/components/Footer';
 import Contact_novo from "@/app/components/Contact-novo";
 
+import Recaptcha from '@/app/components/recaptchas/recaptcha.google';
+import ReCAPTCHA from 'react-google-recaptcha'
+import useReCaptcha from '@/app/zustand/recaptcha.store';
+import toast from 'react-hot-toast'
+
+
+
 
 
 export default function SalaImprensa() {
   const [posts, setPosts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const refCAPTCHA = React.useRef<ReCAPTCHA | null>(null);
+  const { setRecaptchaToken } = useReCaptcha();
+  const development = String(process.env.NEXT_PUBLIC_DEVELOPMENT);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  const handleRecaptchaVerify = async (token: string | null) => {
+    if (token) {
+      setRecaptchaToken(token);
+    } else {
+      toast.error('Erro de reCAPTCHA, tente novamente.');
+    }
+  }
   
   React.useEffect(() => {
     const fetchPosts = async () => {
@@ -40,6 +59,19 @@ export default function SalaImprensa() {
     };
 
     fetchPosts();
+  }, []);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const postsFixed = [
@@ -127,14 +159,14 @@ export default function SalaImprensa() {
 
   function renderPosts() {
     return (
-      <div className="max-w-[1200px] mx-auto py-8 px-4 lg:px-0">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl lg:text-4xl font-bold text-[#363643]">
+      <div className="max-w-[1200px] mx-auto py-8 pl-4 pr-0 lg:px-0">
+        <div className="flex justify-between items-center mb-1 lg:mb-4">
+          <h2 className="text-[20px] lg:text-4xl font-bold text-[#363643]">
             Alares na mídia: <span className="font-normal">matérias e publicações</span>
           </h2>
         </div>
         
-        <p className="text-[#363643] text-sm lg:text-base mb-8">
+        <p className="text-[#363643] text-sm lg:text-base mb-4">
           Confira as principais inserções da Alares na mídia.
         </p>
 
@@ -146,14 +178,14 @@ export default function SalaImprensa() {
             containScroll: "trimSnaps"
           }}
         >
-          <div className="hidden sm:flex justify-end mb-4">
-            <CarouselPrevious className="relative top-0 right-0 left-[-10px] text-black bg-[#00F0B5] rounded-none rounded-l-full hover:bg-main hover:text-white" />
-            <CarouselNext className="relative top-0 right-0 text-black bg-[#00F0B5] rounded-none rounded-r-full hover:bg-main hover:text-white" />
+          <div className="hidden sm:flex justify-end mb-0">
+            <CarouselPrevious className="relative top-[-80px] right-0 left-[-10px] text-black bg-[#00F0B5] rounded-none rounded-l-full hover:bg-main hover:text-white" />
+            <CarouselNext className="relative top-[-80px] right-0 text-black bg-[#00F0B5] rounded-none rounded-r-full hover:bg-main hover:text-white" />
           </div>
           <CarouselContent className="-ml-4">
             {postsFixed.map(post => (
               <CarouselItem key={post.id} className="pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pb-2">
-                <div className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
+                <div className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow border-2 border-[#F1F1FA]">
                   <div className="relative">
                     <Image 
                       src={post.acf_fields.banner_principal} 
@@ -172,12 +204,12 @@ export default function SalaImprensa() {
                         year: 'numeric'
                       })}
                     </div>
-                    <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
+                    <h2 className="text-[18px] lg:text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
                     <div 
-                      className="text-gray-600 mb-4 line-clamp-3 text-center text-sm " 
+                      className="text-gray-600 mb-4 line-clamp-3 text-center text-[12px] lg:text-sm " 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
+                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
                       LER MAIS 
                     </a>
                   </div>
@@ -193,30 +225,30 @@ export default function SalaImprensa() {
 
   function renderPostsAPI() {
     return (
-      <div className='my-10 py-20 bg-[#F1F1FA] px-8 lg:px-0'>
+      <div className='my-10 py-16 lg:py-20 bg-[#F1F1FA] pr-0 pl-4 lg:px-0'>
         <div className="max-w-[1200px] mx-auto ">
-          <div className="flex flex-col lg:flex-row justify-between items-center lg:mb-8">
+          <div className="flex flex-col lg:flex-row justify-between lg:items-center lg:mb-8">
             <h2 className="text-2xl lg:text-4xl font-bold text-[#363643]">
               Alares em foco: <span className="font-normal">últimos releases</span>
             </h2>
-            <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full hidden lg:block">
+            <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full hidden lg:block text-[13px] font-semibold transition-all duration-300">
               MAIS RELEASES
             </button>
           </div>
           
-          <p className="text-[#363643] text-sm lg:text-base mb-8">
+          <p className="text-[#363643] text-[16px] lg:text-base mb-8 w-3/4 lg:w-1/2">
             Veja as novidades, lançamentos de produtos, comunicados e iniciativas corporativas mais recentes da Alares.
           </p>
 
-          <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full block lg:hidden mb-8">
+          <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full block lg:hidden mb-8 text-[13px] font-semibold">
               MAIS RELEASES
             </button>
 
 
-          <div className="w-full overflow-x-auto pb-6 -mx-4 px-4 md:mx-0 md:px-0 md:overflow-x-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 min-w-max md:min-w-0">
+          <div className="w-full overflow-x-auto pb-6 lg:-mx-4 lg:px-4 md:mx-0 md:px-0 md:overflow-x-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex md:grid md:grid-cols-4 lg:grid-cols-4 gap-6 min-w-max md:min-w-0">
               {posts.map(post => (
-                <div key={post.id} className="w-[280px] md:w-auto bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow">
+                <div key={post.id} className="w-[341px] lg:w-[280px] md:w-auto bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow ">
                   <div className="relative">
                     <Image 
                       src={post.acf_fields.banner_principal} 
@@ -235,12 +267,12 @@ export default function SalaImprensa() {
                         year: 'numeric'
                       })}
                     </div>
-                    <h2 className="text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
+                    <h2 className="text-[20px] lg:text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
                     <div 
-                      className="text-gray-600 mb-4 line-clamp-3" 
+                      className="text-gray-600 mb-4 line-clamp-3 text-center" 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full">
+                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
                       LER MAIS 
                     </a>
                   </div>
@@ -257,14 +289,14 @@ export default function SalaImprensa() {
   return (
     <div>
       <div 
-        className='h-[150px] flex justify-center items-center bg-[#3C34F2] relative'
+        className='h-[88px] lg:h-[150px] flex justify-center items-center bg-[#3C34F2] relative border-b-4 border-sub lg:border-none'
         style={{
           backgroundImage: `url(${bar.src})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        <div className='max-w-[1200px] lg:w-[1200px] w-full flex justify-between items-center'>
+        <div className='max-w-[1200px] w-full flex justify-center lg:justify-between items-center'>
           <div className=''>
             <div className='flex items-center'>
               <span className='text-sm font-medium text-sub'>HOME</span>
@@ -275,12 +307,13 @@ export default function SalaImprensa() {
         </div>
       </div>
 
-      <div className="max-w-[1200px] lg:w-[1200px] w-full mx-auto flex flex-col justify-between items-start mt-8 mb-8 px-4 lg:px-0">
+      <div className="max-w-[1200px] w-full mx-auto flex flex-col justify-between items-start mt-[52px] mb-[0px] lg:mt-8 lg:mb-8 px-4 lg:px-0">
           <h1 className="text-left lg:text-center text-3xl lg:text-5xl font-bold text-[#363643] mb-2">
             Sala de imprensa
           </h1>
 
-          <p className="text-[#363643] mb-8 text-sm lg:text-base">
+
+          <p className="text-[#363643] text-[16px] lg:text-base">
             O suporte para jornalistas e profissionais de mídia com informações oficiais sobre a Alares.
           </p>
         </div>
@@ -298,7 +331,7 @@ export default function SalaImprensa() {
 
         <div className='flex flex-col gap-4 w-full lg:w-1/2 mt-8 lg:mt-[55px]'>
 
-          <h2 className='text-2xl font-bold text-[#363643]'>
+          <h2 className='text-[20px] lg:text-2xl font-bold text-[#363643]'>
             Contato para a imprensa
           </h2>
 
@@ -329,7 +362,7 @@ export default function SalaImprensa() {
         <div className='flex flex-col gap-4 w-full lg:w-1/2 mt-[55px]'>
 
 
-          <h2 className='text-2xl font-bold text-[#363643]'>
+          <h2 className='text-2xl font-bold text-[#363643] text-[30px]'>
             Contato para a imprensa
           </h2>
 
@@ -337,7 +370,7 @@ export default function SalaImprensa() {
             Se você é jornalista ou trabalha na imprensa e precisa falar conosco, entre em contato com a nossa assessoria:
           </p>
 
-          <div className='flex flex-col gap-1 bg-[#F1F1FA] p-4 rounded-br-3xl'>
+          <div className='flex flex-col gap-1 bg-[#F1F1FA] p-8 rounded-br-3xl'>
             <span className='font-bold'>RPMA Comunicação</span> 
             <span className='font-bold'>+55 99 99988 0011</span>
             <span className='font-bold'>alares@rpmacomunicacao.com.br</span>
@@ -348,13 +381,13 @@ export default function SalaImprensa() {
         </div>
       </div>
 
-      <div className='bg-[#F1F1FA] mt-[-52px] py-5 mb-8'>
-        <div className='max-w-[1200px] lg:w-[1200px] mx-auto w-full flex flex-col justify-center min-h-[430px] items-center px-2 lg:px-0'>
-          <h2 className="text-2xl text-left lg:text-center font-bold text-[#363643] w-full lg:w-1/3">
+      <div className='bg-[#F1F1FA] mt-[-52px] py-16 mb-8'>
+        <div className='max-w-[1200px] mx-auto w-full flex flex-col justify-center min-h-[430px] items-center px-2 lg:px-0'>
+          <h2 className="text-[20px] lg:text-[30px] text-left lg:text-center font-bold text-[#363643] w-full lg:w-2/5 ">
               Newsletter Indo Além: <span className="font-normal">receba nossos conteúdos exclusivos</span>
             </h2>
 
-            <div className="flex flex-col items-end w-full lg:w-3/4 mt-8 rounded-br-3xl rounded-tr-3xl rounded-bl-3xl bg-white p-8">
+            <div className="flex flex-col items-center w-full lg:w-3/4 mt-8 rounded-br-3xl rounded-tr-3xl rounded-bl-3xl bg-white p-6 lg:p-16 mx-8 lg:mx-0">
               <div className="w-full flex flex-col lg:flex-row lg:items-end gap-4">
                 
                 <div className='flex flex-col gap-1 w-full lg:w-1/2'>
@@ -366,11 +399,39 @@ export default function SalaImprensa() {
                   className=" h-[35px] px-4 py-3 rounded-br-xl rounded-tr-xl border border-gray-200 focus:outline-none focus:border-[#00F0B5]"
                 />
                 </div>
-                <button className="bg-main h-[35px] text-white rounded-full hover:bg-[#00F0B5] hover:text-black font-bold w-full lg:w-1/2">
+                <div className='flex justify-center mt-[13px] lg:mt-[36px]'>
+                {development === 'true' ? (
+                  ''
+                ) : (
+                  isMobile && (
+                    <Recaptcha
+                      onVerify={handleRecaptchaVerify}
+                      refcaptcha={refCAPTCHA}
+                      className='mb-6'
+                    />
+                  )
+                )}
+              </div>
+                <button className="bg-sub text-[13px] h-[35px] text-black rounded-full hover:bg-[#00F0B5] hover:text-black font-bold w-full lg:w-1/2 transition-all duration-300">
                   INSCREVER-SE
 
 
                 </button>
+              </div>
+
+              
+              <div className='flex justify-center mt-[13px] lg:mt-[36px]'>
+                {development === 'true' ? (
+                  ''
+                ) : (
+                  !isMobile && (
+                    <Recaptcha
+                      onVerify={handleRecaptchaVerify}
+                      refcaptcha={refCAPTCHA}
+                      className='mb-6'
+                    />
+                  )
+                )}
               </div>
               
             </div>
