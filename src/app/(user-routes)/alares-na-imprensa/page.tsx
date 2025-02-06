@@ -231,18 +231,24 @@ export default function SalaImprensa() {
             <h2 className="text-2xl lg:text-4xl font-bold text-[#363643]">
               Alares em foco: <span className="font-normal">últimos releases</span>
             </h2>
-            <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full hidden lg:block text-[13px] font-semibold transition-all duration-300">
+            <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full hidden lg:block text-[13px] font-semibold hover:bg-main hover:text-white transition-all duration-300" onClick={() => {
+              window.location.href = 'https://www.alaresinternet.com.br/indoalem/alares-em-foco/';
+            }}>
               MAIS RELEASES
             </button>
           </div>
+
           
           <p className="text-[#363643] text-[16px] lg:text-base mb-8 w-3/4 lg:w-1/2">
             Veja as novidades, lançamentos de produtos, comunicados e iniciativas corporativas mais recentes da Alares.
           </p>
 
-          <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full block lg:hidden mb-8 text-[13px] font-semibold">
+          <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full block lg:hidden mb-8 text-[13px] font-semibold hover:bg-main hover:text-white transition-all duration-300" onClick={() => {
+            window.location.href = 'https://www.alaresinternet.com.br/indoalem/alares-em-foco/';
+          }}>
               MAIS RELEASES
             </button>
+
 
 
           <div className="w-full overflow-x-auto pb-6 lg:-mx-4 lg:px-4 md:mx-0 md:px-0 md:overflow-x-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -412,7 +418,7 @@ export default function SalaImprensa() {
                   )
                 )}
               </div>
-                <button className="bg-sub text-[13px] h-[35px] text-black rounded-full hover:bg-[#00F0B5] hover:text-black font-bold w-full lg:w-1/2 transition-all duration-300">
+                <button className="bg-sub text-[13px] h-[35px] text-black rounded-full hover:bg-main hover:text-white font-bold w-full lg:w-1/2 transition-all duration-300">
                   INSCREVER-SE
 
 
