@@ -228,7 +228,7 @@ export default function SalaImprensa() {
       <div className='my-10 py-16 lg:py-20 bg-[#F1F1FA] pr-0 pl-4 lg:px-0'>
         <div className="max-w-[1200px] mx-auto ">
           <div className="flex flex-col lg:flex-row justify-between lg:items-center lg:mb-4">
-            <h2 className="text-2xl lg:text-4xl font-bold text-[#363643]">
+            <h2 className="text-[20px] lg:text-4xl font-bold text-[#363643]">
               Alares em foco: <span className="font-normal">últimos releases</span>
             </h2>
             <button className="bg-[#00F0B5] text-black px-6 py-2 rounded-full hidden lg:block text-[13px] font-semibold hover:bg-main hover:text-white transition-all duration-300" onClick={() => {
@@ -251,10 +251,18 @@ export default function SalaImprensa() {
 
 
 
-          <div className="w-full overflow-x-auto pb-6 lg:-mx-4 lg:px-4 md:mx-0 md:px-0 md:overflow-x-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="flex md:grid md:grid-cols-4 lg:grid-cols-4 gap-6 min-w-max md:min-w-0">
-              {posts.map(post => (
-                <div key={post.id} className="w-[341px] lg:w-[280px] md:w-auto bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow ">
+          <Carousel 
+          className="w-full"
+          opts={{
+            align: "start",
+            slidesToScroll: 1,
+            containScroll: "trimSnaps"
+          }}
+        >
+          <CarouselContent className="-ml-4">
+            {posts.map(post => (
+              <CarouselItem key={post.id} className="pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pb-2">
+                <div className="bg-white rounded-br-3xl overflow-hidden shadow hover:shadow-lg transition-shadow border-2 border-[#F1F1FA]">
                   <div className="relative">
                     <Image 
                       src={post.acf_fields.banner_principal} 
@@ -273,9 +281,9 @@ export default function SalaImprensa() {
                         year: 'numeric'
                       })}
                     </div>
-                    <h2 className="text-[20px] lg:text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
+                    <h2 className="text-[18px] lg:text-xl text-center font-bold mb-3 line-clamp-2">{post.title}</h2>
                     <div 
-                      className="text-gray-600 mb-4 line-clamp-3 text-center" 
+                      className="text-gray-600 mb-4 line-clamp-3 text-center text-[12px] lg:text-sm " 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
                     <a href={post.link} target='_blank' className=" text-[13px] bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
@@ -284,9 +292,10 @@ export default function SalaImprensa() {
                   </div>
 
                 </div>
-              ))}
-            </div>
-          </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
         </div>
       </div>
     );
@@ -314,7 +323,7 @@ export default function SalaImprensa() {
       </div>
 
       <div className="max-w-[1200px] w-full mx-auto flex flex-col justify-between items-start mt-[52px] mb-[0px] lg:mt-8 lg:mb-8 px-4 lg:px-0">
-          <h1 className="text-left lg:text-center text-3xl lg:text-5xl font-bold text-[#363643] mb-2">
+          <h1 className="text-left lg:text-center text-3xl lg:text-5xl font-bold text-[#363643] mt-10 mb-2">
             Sala de imprensa
           </h1>
 
@@ -335,7 +344,7 @@ export default function SalaImprensa() {
 
       <div className='max-w-[900px] lg:w-[900px] mx-auto w-full flex justify-between min-h-[430px] relative z-10 lg:hidden px-4'>
 
-        <div className='flex flex-col gap-4 w-full lg:w-1/2 mt-8 lg:mt-[55px]'>
+        <div className='flex flex-col gap-4 w-full lg:w-1/2 mt-8 lg:mt-[25px]'>
 
           <h2 className='text-[20px] lg:text-2xl font-bold text-[#363643]'>
             Contato para a imprensa
@@ -347,7 +356,8 @@ export default function SalaImprensa() {
 
           <div className='flex flex-col gap-1 bg-[#F1F1FA] p-4 rounded-br-3xl'>
             <span className='font-bold'>RPMA Comunicação</span> 
-            <span className='font-bold'>+55 99 99988 0011</span>
+            <span className='font-bold'>+55 (11) 5501-4655 (fixo)</span>
+            <span className='font-bold'>+55 (14) 99807-1006 (Whatsapp)</span>
             <span className='font-bold'>alares@rpmacomunicacao.com.br</span>
           </div>
 
@@ -365,7 +375,7 @@ export default function SalaImprensa() {
           backgroundRepeat: 'no-repeat'
         }}>
 
-        <div className='flex flex-col gap-4 w-full lg:w-1/2 mt-[55px]'>
+        <div className='flex flex-col gap-4 w-full lg:w-[55%] mt-[25px]'>
 
 
           <h2 className='text-2xl font-bold text-[#363643] text-[30px]'>
@@ -388,8 +398,8 @@ export default function SalaImprensa() {
         </div>
       </div>
 
-      <div className='bg-[#F1F1FA] mt-[-52px] py-16 mb-8'>
-        <div className='max-w-[1200px] mx-auto w-full flex flex-col justify-center min-h-[430px] items-center px-2 lg:px-0'>
+      <div className='bg-[#F1F1FA] mt-[-52px] lg:py-16 mb-2 lg:mb-8'>
+        <div className='max-w-[1200px] mx-auto w-full flex flex-col justify-center min-h-[430px] items-center px-4 lg:px-0'>
           <h2 className="text-[20px] lg:text-[30px] text-left lg:text-center font-bold text-[#363643] w-full lg:w-2/5 ">
               Newsletter Indo Além: <span className="font-normal">receba nossos conteúdos exclusivos</span>
             </h2>
