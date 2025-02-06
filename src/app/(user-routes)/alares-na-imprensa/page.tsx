@@ -209,7 +209,7 @@ export default function SalaImprensa() {
                       className="text-gray-600 mb-4 line-clamp-3 text-center text-[12px] lg:text-sm " 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
+                    <a href={post.link} target='_blank' className=" text-[13px] bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
                       LER MAIS 
                     </a>
                   </div>
@@ -227,7 +227,7 @@ export default function SalaImprensa() {
     return (
       <div className='my-10 py-16 lg:py-20 bg-[#F1F1FA] pr-0 pl-4 lg:px-0'>
         <div className="max-w-[1200px] mx-auto ">
-          <div className="flex flex-col lg:flex-row justify-between lg:items-center lg:mb-8">
+          <div className="flex flex-col lg:flex-row justify-between lg:items-center lg:mb-4">
             <h2 className="text-2xl lg:text-4xl font-bold text-[#363643]">
               Alares em foco: <span className="font-normal">últimos releases</span>
             </h2>
@@ -278,7 +278,7 @@ export default function SalaImprensa() {
                       className="text-gray-600 mb-4 line-clamp-3 text-center" 
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <a href={post.link} target='_blank' className="bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
+                    <a href={post.link} target='_blank' className=" text-[13px] bg-main text-white block text-center font-bold mx-auto hover:bg-[#00F0B5] hover:text-black px-4 py-2 rounded-full transition-all duration-300">
                       LER MAIS 
                     </a>
                   </div>
