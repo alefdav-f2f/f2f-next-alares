@@ -59,6 +59,13 @@ export default function Footer() {
 
                     <div className='flex mr-2'>
                         <div className='mr-2'>
+                            <a rel="canonical" href='/alares-na-imprensa' className='text-sub hover:underline hover:cursor-pointer'>Sala de Imprensa</a>
+                        </div>
+                        <div className='h-5 bg-white w-[1px]'></div>
+                    </div>
+
+                    <div className='flex mr-2'>
+                        <div className='mr-2'>
                             <a rel="canonical" href={`${internalPATH.politica_de_privacidade_e_cookies}${getParams()}`} className='text-sub hover:underline hover:cursor-pointer'>Política de Privacidade e Cookies</a>
                         </div>
                         <div className='h-5 bg-white w-[1px]'></div>
