@@ -322,7 +322,7 @@ export default function SalaImprensa() {
         </div>
       </div>
 
-      <div className="max-w-[1200px] w-full mx-auto flex flex-col justify-between items-start mt-[22px] mb-[0px] lg:mt-8 lg:mb-8 px-4 lg:px-0">
+      <div className="max-w-[1200px] w-full mx-auto flex flex-col justify-between items-start mb-[0px] lg:mt-8 lg:mb-8 px-4 lg:px-0">
           <h1 className="text-left lg:text-center text-3xl lg:text-5xl font-bold text-[#363643] mt-10 mb-2">
             Sala de imprensa
           </h1>
