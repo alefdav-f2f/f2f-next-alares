@@ -52,7 +52,7 @@ export default function Plan2({ plan_type }: any) {
       });
 
       const filteredAndSortedOffers = getOffersWithCardClassification(data);
-      setPlan(filteredAndSortedOffers.slice(0, 3));
+      setPlan(filteredAndSortedOffers);
       setReady(true);
     }
   }
