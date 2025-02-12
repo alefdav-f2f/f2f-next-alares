@@ -52,7 +52,7 @@ export default function Plan2({ plan_type }: any) {
       });
 
       const filteredAndSortedOffers = getOffersWithCardClassification(data);
-      setPlan(filteredAndSortedOffers);
+      setPlan(filteredAndSortedOffers.slice(0, 3));
       setReady(true);
     }
   }
@@ -121,8 +121,8 @@ export default function Plan2({ plan_type }: any) {
             </div>
 
             <div className="hidden lg:flex justify-center px-4 hover:cursor-pointer select-none mt-6">
-              <div className="lg:w-[1120px] w-[200px] h-full]">
-                <div className="flex justify-between">
+              <div className="lg:w-[1200px] w-[200px] h-full]">
+                <div className="flex justify-start">
                   {planList?.map((offer: any, index) => {
                     return (
                       <>
