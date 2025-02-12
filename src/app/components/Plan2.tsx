@@ -140,7 +140,7 @@ export default function Plan2({ plan_type }: any) {
                   modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                   spaceBetween={1}
                   slidesPerView={1.2}
-                  navigation={false}
+                  navigation={true}
                   pagination={false}
                   onSwiper={(swiper) => setActiveSlide(swiper)}
                   onSlideChange={(swiper) => {}}
@@ -149,7 +149,7 @@ export default function Plan2({ plan_type }: any) {
                     return (
                       <SwiperSlide
                         key={index}
-                        className="px-2 pt-2 max-w-[400px]"
+                        className="pt-2b"
                       >
                         <CardOffer offer={offer} params="home-2-mob" />
                       </SwiperSlide>
