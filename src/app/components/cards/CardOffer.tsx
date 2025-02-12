@@ -55,7 +55,7 @@ export default function CardOffer({ offer, params }: any) {
 
     return (
         <div key={offer.id} className={`sm:scale-90 scale-75 rounded-lg sm:m-2 pb-4 h-full fade50 ${params === 'home-2' ? 'flex-1' : ''} ${params === 'home-2-mob' ? '-mt-[80px]'  : ''}`}>
-            <div className={`shadow-xl rounded-lg ${params === 'home-2' ? 'w-full mx-auto'  : ''} ${params === 'home-2-mob' ? 'w-full'  : ''}`}>
+            <div className={`shadow-xl rounded-lg ${params === 'home-2' ? 'w-full mx-auto'  : ''} ${params === 'home-2-mob' ? 'w-full py-4'  : ''}`}>
                 <div className='h-[40px] mb-[-20px] relative flex justify-center items-center'>
                     {offer.highlight ? (
                         <div className={`flex justify-center rounded-full px-8 py-2 border-2 border-white ${offer.blackFriday ? 'bg-[#D5F316]' : 'bg-sub'}`}>

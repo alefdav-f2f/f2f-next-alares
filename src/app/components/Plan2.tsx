@@ -141,6 +141,7 @@ export default function Plan2({ plan_type }: any) {
                   spaceBetween={1}
                   slidesPerView={1.2}
                   navigation={true}
+                  centeredSlides={true}
                   pagination={false}
                   onSwiper={(swiper) => setActiveSlide(swiper)}
                   onSlideChange={(swiper) => {}}
