@@ -4,6 +4,7 @@ import Contact from "@/app/components/Contact";
 import Footer from "@/app/components/Footer";
 import Map from "@/app/components/Map";
 import Plan from "@/app/components/Plan";
+import Plan2 from "@/app/components/Plan2";
 import SVA from "@/app/components/SVA";
 import WhyUs from "@/app/components/WhyUs";
 import React from "react";
@@ -26,7 +27,7 @@ export default function Home() {
                             <Banner type={1} />
                         </div>
                         <div>
-                            <Plan plan_type={'home'}/>
+                            <Plan2 plan_type={'home'}/>
                         </div>
                         <div className="flex justify-center mb-10">
                             <SVA />

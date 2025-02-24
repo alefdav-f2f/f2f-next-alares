@@ -114,9 +114,9 @@ export default function Plan2({ plan_type }: any) {
               </h2>
               <div
                 onClick={() => router.push(`/planos-de-internet`)}
-                className={`flex text-sm font-semibold hover:cursor-pointer px-2 sm:px-4 sm:py-4 max-[450px]:h-12 text-black rounded-full bg-sub items-center`}
+                className={`flex text-sm font-semibold hover:cursor-pointer px-8 sm:py-4 max-[450px]:h-12 text-[#b8b8b8] border-[#b8b8b8] border-2 rounded-full bg-transparent items-center`}
               >
-                <span className="text-xs">MAIS OFERTAS</span>
+                <span className="text-xs">VER MAIS</span>
               </div>
             </div>
 
