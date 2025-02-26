@@ -16,6 +16,7 @@ import { useSearchParams } from "next/navigation";
 import SkeletonCard from "./skeleton/SkeletonCard";
 import React, { useState } from "react";
 import CardOffer from "./cards/CardOffer";
+import CardHomeMobile from "./cards/CardHomeMobile";
 import PlanService from "../services/api/plan.service";
 
 import { useRouter } from "next/navigation";
@@ -133,15 +134,15 @@ export default function Plan2({ plan_type }: any) {
                 </div>
               </div>
             </div>
-            <div className="flex lg:hidden justify-center p-4 hover:cursor-pointer select-none h-[550px]">
-              <div className="lg:w-[1000px] w-[375px] ">
+            <div className="flex lg:hidden justify-start hover:cursor-pointer select-none h-[550px]">
+              <div className="lg:w-[1000px] w-full ">
                 <Swiper
                   className="h-[550px]"
                   modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-                  spaceBetween={1}
+                  spaceBetween={25}
                   slidesPerView={1.2}
-                  navigation={true}
-                  centeredSlides={true}
+                  navigation={false}
+                  centeredSlides={false}
                   pagination={false}
                   onSwiper={(swiper) => setActiveSlide(swiper)}
                   onSlideChange={(swiper) => {}}
@@ -152,7 +153,7 @@ export default function Plan2({ plan_type }: any) {
                         key={index}
                         className="pt-2b"
                       >
-                        <CardOffer offer={offer} params="home-2-mob" />
+                        <CardHomeMobile offer={offer} />
                       </SwiperSlide>
                     );
                   })}
