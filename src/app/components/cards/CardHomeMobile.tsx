@@ -54,16 +54,16 @@ export default function CardHomeMobile({ offer, params }: any) {
     }
 
     return (
-        <div key={offer.id} className={` h-full w-full `}>
-            <div className={`rounded-br-[30px] border border-[#e2e2f4] bg-[#f1f1fa] flex flex-col gap-y-2 px-[20px] py-[13px]`}>
-                <div className='h-[40px] mb-[-20px] relative flex justify-center items-center'>
+        <div key={offer.id} className={` h-full w-full overflow-auto pt-[30px]`}>
+            <div className={`relative rounded-br-[30px] border border-[#e2e2f4] bg-[#f1f1fa] flex flex-col gap-y-2 px-[20px] py-[13px]`}>
+                <div className='flex justify-center items-center absolute left-[-3px] top-[-20px] '>
                     {offer.highlight ? (
-                        <div className={`flex justify-center rounded-full px-8 py-2 border-2 border-white`}>
-                            <span className={`font-medium text-main`}>{offer.highlight}</span>
+                        <div className={`flex justify-center rounded-br-[50px] pl-[15px] pr-[25px] py-2 border-2 border-white bg-main`}>
+                            <span className={`font-[700] text-white text-[13px]`}>{offer.highlight}</span>
                         </div>
                     ) : null}
                 </div>
-                <div className='flex justify-between items-center pb-[14px]'>
+                <div className='flex justify-between items-center pb-[14px] pt-[16px]'>
                     <div className='flex flex-col gap-y-[12px]'>
                         <div className={`flex items-center justify-start gap-2`}>
                             {offer.title?.length > 3 ? (<span className='text-[#363643] text-[28px] font-[700]'>{offer.title}</span>) : null}
@@ -199,8 +199,8 @@ export default function CardHomeMobile({ offer, params }: any) {
                         </a>
                     </div> */}
 
-                    <div className='flex justify-center items-center'>
-                        <button onClick={() => navigateContract('/contrate-ja', offer)} className={`px-4 py-2 rounded-full border-2 hover:border-main ${offer.blackFriday ? 'bg-[#D5F316] text-black' : 'bg-sub text-main'}  hover:bg-hover hover:scale-110 w-[150px] hover:text-white`}>
+                    <div className='flex justify-center items-center absolute left-20 z-[-1]'>
+                        <button onClick={() => navigateContract('/contrate-ja', offer)} className={`px-4 pb-2 pt-4 rounded-full w-[150px] bg-[#00F3A8] text-[#363643] border border-[#e2e2f4] font-[700] text-[13px] `}>
                             {isLoading ? <><Loading /></> : 'Contrate Já'}
                         </button>
                     </div>
