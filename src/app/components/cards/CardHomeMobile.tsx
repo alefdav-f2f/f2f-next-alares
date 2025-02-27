@@ -54,8 +54,8 @@ export default function CardHomeMobile({ offer, params }: any) {
     }
 
     return (
-        <div key={offer.id} className={` rounded-lg h-full w-full `}>
-            <div className={`rounded-lg bg-[#f1f1fa] flex flex-col gap-y-2`}>
+        <div key={offer.id} className={` h-full w-full `}>
+            <div className={`rounded-br-[30px] border border-[#e2e2f4] bg-[#f1f1fa] flex flex-col gap-y-2 px-[20px] py-[13px]`}>
                 <div className='h-[40px] mb-[-20px] relative flex justify-center items-center'>
                     {offer.highlight ? (
                         <div className={`flex justify-center rounded-full px-8 py-2 border-2 border-white`}>
@@ -63,125 +63,141 @@ export default function CardHomeMobile({ offer, params }: any) {
                         </div>
                     ) : null}
                 </div>
-                <div className='flex justify-center items-center'>
-                    <div className='flex flex-col gap-y-4'>
+                <div className='flex justify-between items-center pb-[14px]'>
+                    <div className='flex flex-col gap-y-[12px]'>
                         <div className={`flex items-center justify-start gap-2`}>
-                            {offer.title?.length > 3 ? (<span className='text-black text-3xl font-bold'>{offer.title}</span>) : null}
-                            {offer.title?.length <= 3 ? (<span className='text-black  text-3xl font-bold'>{offer.title}</span>) : null}
-                            <span className='text-black font-medium text-1xl'>{offer.subtitle}</span>
+                            {offer.title?.length > 3 ? (<span className='text-[#363643] text-[28px] font-[700]'>{offer.title}</span>) : null}
+                            {offer.title?.length <= 3 ? (<span className='text-[#363643]  text-[28px] font-[700]'>{offer.title}</span>) : null}
+                            <span className='text-[#363643] text-[28px] font-[400]'>{offer.subtitle}</span>
                         </div>
 
                         {/* SERVIÇOS */}
                         
-                        <div className=' flex flex-col items-center gap-y-2'>
+                        <div className=' flex flex-col items-start gap-y-2'>
                             <div className='flex'>
-                                <FaWifi className={`w-5 h-5 mr-2 ${offer.blackFriday ? 'text-white' : 'text-main'}`} />
-                                <span className={`text-sm ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[0]?.name}</span>
+                                <FaWifi className={`w-[13px] h-[13px] mr-2 ${offer.blackFriday ? 'text-white' : 'text-main'}`} />
+                                <span className={`text-xs ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[0]?.name}</span>
                             </div>
 
                             <div className='flex'>
-                                <FaTools className={`w-5 h-5 mr-2 ${offer.blackFriday ? 'text-white' : 'text-main'}`} />
-                                <span className={`text-sm ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[1]?.name}</span>
+                                <FaTools className={`w-[13px] h-[13px] mr-2 ${offer.blackFriday ? 'text-white' : 'text-main'}`} />
+                                <span className={`text-xs ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[1]?.name}</span>
                             </div>
                         </div>
 
                     </div>
 
+                    <div className='h-[99px] border-r border-[#CFCFF0] self-center'></div>
+
                     {/* PREÇO */}
                     {offer?.promo === false ? (
-                        <div className='mb-4'>
-                            <div className='flex justify-center'>
-                                <div className={`flex text-${offer.blackFriday ? 'white' : 'main'}`}>
-                                    <div>
-                                        <span>R$</span>
+                        <div className=''>
+                            <div className='flex flex-col justify-center'>
+                                <div className={`flex text-black`}>
+                                    <div className='flex items-center'>
+                                        <span className='text-[18px] font-[700]'>R$</span>
                                     </div>
                                     <div>
-                                        <span className='text-5xl'>{RegexService.getWordPosition(offer.price, 0)}</span>
+                                        <span className='text-[38px] font-[400]'>{RegexService.getWordPosition(offer.price, 0)}</span>
                                     </div>
-                                    <div>
+                                    <div className='flex flex-col items-start justify-center'>
                                         <div>
-                                            <span>{RegexService.getWordPrice(offer.price)}</span>
+                                            <span className='text-[16px] font-[700]'>{RegexService.getWordPrice(offer.price)}</span>
                                         </div>
-                                        <div className='mt-[-4px]'>
-                                            <span className='text-xs'>mês</span>
+                                        <div className='flex align-start'>
+                                            <span className='text-[10px] text-[#B5B5B5] font-bold'>mês</span>
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
-                            <div className='text-center mt-[-5px]'>
-                                <span className='text-sub text-xs'>Na conta digital</span>
+                            <div className='text-center mt-[-15px]'>
+                                <span className='text-[#646471] text-[10px] font-[400]'>Na conta digital</span>
                             </div>
+                            <button className='bg-transparent text-main text-[11px] py-[2px] rounded-full w-full border border-[#3C34F2] font-bold'>
+                                    ver detalhes
+                                </button>
                         </div>
                     ) : null}
 
                     {offer?.promo === true ? (
-                        <div className='mb-2'>
-                            <div className='flex justify-center'>
-                                <div className={`flex text-${offer.blackFriday ? 'white' : 'main'}`}>
-                                    <div>
-                                        <span>R$</span>
+                        <div className=''>
+                            <div className='flex flex-col justify-center'>
+                                <div className={`flex text-black`}>
+                                    <div className='flex items-center'>
+                                        <span className='text-[18px] font-[700]'>R$</span>
                                     </div>
                                     <div>
-                                        <span className='text-5xl'>{RegexService.getWordPosition(offer.promo_price, 0)}</span>
+                                        <span className='text-[38px] font-[400]'>{RegexService.getWordPosition(offer.price, 0)}</span>
                                     </div>
-                                    <div>
+                                    <div className='flex flex-col items-start justify-center'>
                                         <div>
-                                            <span>{RegexService.getWordPrice(offer.promo_price)}</span>
+                                            <span className='text-[16px] font-[700]'>{RegexService.getWordPrice(offer.price)}</span>
                                         </div>
-                                        <div className='mt-[-4px]'>
-                                            <span className='text-xs'>/mês</span>
+                                        <div className='flex align-start'>
+                                            <span className='text-[10px] text-[#B5B5B5] font-bold'>mês</span>
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
-                            <div className='text-center mt-[-5px] mb-2'>
-                                <span className={`text-${offer.blackFriday ? 'white' : 'sub'} text-xs`}>{`Por ${offer.promo_period} meses`}</span>
+                            <div className='text-center mt-[-15px]'>
+                                <span className='text-[#646471] text-[10px] font-[400]'>Na conta digital</span>
                             </div>
-
-                            <div className='text-center'>
-                                <span className={`text-${offer.blackFriday ? 'white' : 'main'} text-xs`}>{ `A partir do ${(Number(offer.promo_period) + 1)}º mês R$ ${offer.price}` }</span>
-                            </div>
+                            <button className='bg-transparent text-main text-[11px] py-[2px] rounded-full w-full border border-[#3C34F2] font-bold'>
+                                    ver detalhes
+                                </button>
                         </div>
                     ) : null}
 
                 </div>
                 {/* APP DE CONTEÚDO */}
-                    <div className='mb-6 flex flex-row gap-x-2'>
+                    <div className='flex flex-row gap-x-2 border-t border-[#CFCFF0] pt-[10px]'>
                         <div className='flex items-center justify-center mb-2'>
-                            <div className='mb-1'>
-                                <img src="https://hmg.alaresinternet.com.br/wp-content/themes/alares-PR168/assets/_dist/images/template/icon-apps.svg" alt="" className='mr-2 w-4' />
-                            </div>
                             <div>
-                                <span className={`${offer.blackFriday ? 'text-white' : 'text-main'} font-light`}>Inclusos:</span>
+                                <span className={`font-[600] text-[#363643] text-[14px]`}>Inclusos:</span>
                             </div>
                         </div>
 
-                        <div className='flex items-center justify-center flex-wrap mb-1'>
+                        <div className='flex items-center justify-start flex-nowrap mb-1 gap-2 overflow-x-hidden [&::-webkit-scrollbar]:hidden'>
                             {offer?.services?.map((service: any, index_service: number) => {
                                 return (
-                                    <div>
-                                        <div className='p-1' key={service.name}>
-                                            <div className='w-[35px] h-[35px] rounded-full shadow-lg flex justify-center hover:scale-150'>
-                                                <img src={service.icon} alt="" className='object-contain rounded-full' />
+                                    <>
+                                        {service.emphasis === true ? (                                            
+                                            <div key={service.id} className=''>
+                                                <div className='flex justify-center'>
+                                                    <div className='flex justify-center w-[100px] rounded-full py-1 px-2 bg-white'>
+                                                        <img src={service.iconEmphasis} alt="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : 
+                                        <div>
+                                            <div className='' key={service.name}>
+                                                <div className='w-[35px] h-[35px] rounded-full flex justify-center border-3 border-white'>
+                                                    <img src={service.icon} alt="" className='object-contain rounded-full' />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        }
+                                    </>
+                                    
                                 )
                             })}
                         </div>
 
                     </div>
 
-                <div className={`p-4 ${offer.blackFriday ? 'bg-black' : ''}`}>
+                <div className={` ${offer.blackFriday ? 'bg-black' : ''}`}>
                     
 
 
                     {/* CONSULTE CONDIÇÕES     */}
-                    <div className='text-center mb-6'>
+                    {/* <div className='text-center mb-6'>
                         <a rel="canonical" href={navigation(0, `${'?' + String(current)}`, 'document', '')}>
                             <span className={`text-sm text-${offer.blackFriday ? 'white' : 'main'} hover:cursor-pointer hover:underline`}>{`<< Consulte condições >>`}</span>
                         </a>
-                    </div>
+                    </div> */}
 
                     <div className='flex justify-center items-center'>
                         <button onClick={() => navigateContract('/contrate-ja', offer)} className={`px-4 py-2 rounded-full border-2 hover:border-main ${offer.blackFriday ? 'bg-[#D5F316] text-black' : 'bg-sub text-main'}  hover:bg-hover hover:scale-110 w-[150px] hover:text-white`}>
