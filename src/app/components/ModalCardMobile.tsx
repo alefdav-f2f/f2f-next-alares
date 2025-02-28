@@ -53,10 +53,17 @@ export default function ModalCardMobile({ buttonText, offer }: any) {
 
   const modalContent = showModal ? (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed top-0 left-0 right-0 bottom-0 w-full h-full z-50 outline-none focus:outline-none">
+      <div 
+        className={`justify-center items-center flex overflow-x-hidden overflow-y-auto fixed top-0 left-0 right-0 bottom-0 w-full h-full z-50 outline-none focus:outline-none transition-opacity duration-300 ease-in-out ${
+          showModal ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         <div className="relative w-full h-full">
-          {/*content*/}
-          <div className="border-0 shadow-lg relative flex flex-col justify-center w-full h-full bg-white outline-none focus:outline-none">
+          <div 
+            className={`border-0 shadow-lg relative flex flex-col justify-center w-full h-full bg-white outline-none focus:outline-none transition-transform duration-300 ease-in-out ${
+              showModal ? 'translate-y-0' : 'translate-y-full'
+            }`}
+          >
             {/*header*/}
             <div className="flex items-center justify-center p-5">
                 <div className="flex flex-col items-start justify-between">
@@ -111,22 +118,22 @@ export default function ModalCardMobile({ buttonText, offer }: any) {
                     <div className='mb-1 flex flex-col items-start'>
                         <div className='flex mb-2 items-center'>
                             <FaWifi className={`w-4 h-3 mr-2 text-main`} />
-                            <span className={`text-[14px] font-[600] text[#646471] `}>{offer?.contents[0]?.name}</span>
+                            <span className={`text-[14px] font-[600] text-[#646471] `}>{offer?.contents[0]?.name}</span>
                         </div>
 
                         <div className='flex mb-2 items-center'>
                             <FaTools className={`w-4 h-3 mr-2 text-main `} />
-                            <span className={`text-[14px] font-[600] text[#646471] `}>{offer?.contents[1]?.name}</span>
+                            <span className={`text-[14px] font-[600] text-[#646471] `}>{offer?.contents[1]?.name}</span>
                         </div>
 
                         <div className='flex mb-2 items-center'>
                             <FaDownload className={`w-4 h-3 mr-2 text-main `} />
-                            <span className={`text-[14px] font-[600] text[#646471] `}>{offer?.contents[2]?.name}</span>
+                            <span className={`text-[14px] font-[600] text-[#646471] `}>{offer?.contents[2]?.name}</span>
                         </div>
 
                         <div className='flex mb-2 items-center'>
                             <FaUpload className={`w-4 h-3 mr-2 text-main `} />
-                            <span className={`text-[14px] font-[600] text[#646471] `}>{offer?.contents[3]?.name}</span>
+                            <span className={`text-[14px] font-[600] text-[#646471] `}>{offer?.contents[3]?.name}</span>
                         </div>
                     </div>
                   </div>
@@ -143,7 +150,7 @@ export default function ModalCardMobile({ buttonText, offer }: any) {
 
                   <div className="flex flex-row items-center justify-center pt-[17px] pb-[28px] gap-x-2">
                       <p className="text-[14px] font-[400] text-[#646471]">
-                        Lorem Ipsum é simplesmente uma simulação de texto da 
+                        Lorem Ipsum é simplesmente uma simulação de texto da 
                         indústria tipográfica e de impressos, e vem sendo utilizado 
                         desde o século XVI, quando um impressor desconhecido 
                         pegou uma bandeja de tipos e os embaralhou para fazer 

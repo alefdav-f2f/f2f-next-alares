@@ -115,7 +115,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                             <div className='text-center mt-[-15px]'>
                                 <span className='text-[#646471] text-[10px] font-[400]'>Na conta digital</span>
                             </div>
-                            <ModalCardMobile buttonText='ver detalhes' offer={offer} />
+                            <ModalCardMobile buttonText='ver detalhes' offer={offer} className="transition-all duration-300 ease-in-out" />
                         </div>
                     ) : null}
 
@@ -143,7 +143,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                             <div className='text-center mt-[-15px]'>
                                 <span className='text-[#646471] text-[10px] font-[400]'>Na conta digital</span>
                             </div>
-                            <ModalCardMobile buttonText='ver detalhes' offer={offer} />
+                            <ModalCardMobile buttonText='ver detalhes' offer={offer} className="transition-all duration-300 ease-in-out" />
                         </div>
                     ) : null}
 
@@ -171,7 +171,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                                         ) : 
                                         <div>
                                             <div className='' key={service.name}>
-                                                <div className='w-[35px] h-[35px] rounded-full flex justify-center border-3 border-white'>
+                                                <div className='w-[35px] h-[35px] rounded-full flex justify-center border-3 border-white bg-white'>
                                                     <img src={service.icon} alt="" className='object-contain rounded-full' />
                                                 </div>
                                             </div>
