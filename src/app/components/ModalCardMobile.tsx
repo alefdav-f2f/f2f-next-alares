@@ -142,7 +142,7 @@ export default function ModalCardMobile({ buttonText, offer }: any) {
 
               {/* texto complementar */}
 
-              <div className="flex flex-col w-full border-t border-[#cfcff0]">
+              {/* <div className="flex flex-col w-full border-t border-[#cfcff0]">
                 <div className="flex flex-col items-start mt-[-1px]">
                   <div className={`flex justify-start w-[210px] rounded-br-[50px] pl-[15px] pr-[25px] py-[6px] border-2 border-transparent bg-main`}>
                       <span className={`font-[700] text-white text-[13px]`}>TEXTO COMPLEMENTAR</span>
@@ -159,7 +159,7 @@ export default function ModalCardMobile({ buttonText, offer }: any) {
                       </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* button */}
 
