@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FaDownload, FaTools, FaUpload, FaWifi } from 'react-icons/fa'
 import Loading from '../loadings/Loading';
+import ModalCardMobile from '../ModalCardMobile';
 
 
 export default function CardHomeMobile({ offer, params }: any) {
@@ -114,9 +115,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                             <div className='text-center mt-[-15px]'>
                                 <span className='text-[#646471] text-[10px] font-[400]'>Na conta digital</span>
                             </div>
-                            <button className='bg-transparent text-main text-[11px] py-[2px] rounded-full w-full border border-[#3C34F2] font-bold'>
-                                    ver detalhes
-                                </button>
+                            <ModalCardMobile buttonText='ver detalhes' offer={offer} />
                         </div>
                     ) : null}
 
@@ -144,9 +143,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                             <div className='text-center mt-[-15px]'>
                                 <span className='text-[#646471] text-[10px] font-[400]'>Na conta digital</span>
                             </div>
-                            <button className='bg-transparent text-main text-[11px] py-[2px] rounded-full w-full border border-[#3C34F2] font-bold'>
-                                    ver detalhes
-                                </button>
+                            <ModalCardMobile buttonText='ver detalhes' offer={offer} />
                         </div>
                     ) : null}
 
