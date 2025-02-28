@@ -5,8 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react'
 import { FaDownload, FaTools, FaUpload, FaWifi } from 'react-icons/fa';
 import Loading from '../loadings/Loading';
-
-
+import { externalURL } from "../../api/externalURL";
 
 export default function CardInternet({ plan }: any) {
 
@@ -42,6 +41,19 @@ export default function CardInternet({ plan }: any) {
 
     }
 
+    function ctaPlanPro(value: boolean, plan: any){
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const whatsappLink = isMobile
+      ? externalURL.whatsappMobile // Para dispositivos móveis
+      : externalURL.whatsappDesktop; // Para navegadores de desktop
+
+    
+        if(value){
+            return () => window.open(whatsappLink + "&text=" + encodeURIComponent('Tenho interesse em contratar o plano Alares Pro ' + plan.title + ' ' +plan.subtitle + ' no valor de R$ ' + plan.price), "_blank");
+        }else{
+            return () => navigateContract('/contrate-ja', plan)
+        }
+    }
     // Envio de evento datalayer
     function postButtonClick(plan: any) {
 
@@ -221,7 +233,7 @@ export default function CardInternet({ plan }: any) {
                             </div>
 
                             <div className='flex justify-center items-center'>
-                                <button onClick={() => navigateContract('/contrate-ja', plan)} className={`px-6 py-1 rounded-full ${plan.blackFriday ? 'bg-[#D5F316]' : 'bg-sub'} text-black hover:bg-hover hover:scale-110 hover:text-white w-[150px]`}>
+                                <button onClick={ctaPlanPro(plan.alaresPro, plan)} className={`px-6 py-1 rounded-full ${plan.alaresPro ? 'bg-[#7D79F5]' : plan.blackFriday ? 'bg-[#D5F316]' : 'bg-sub'} text-black hover:bg-hover hover:scale-110 hover:text-white w-[150px]`}>
                                     {isLoading ? <><Loading /></> : 'Contrate Já'}
                                 </button>
                             </div>

@@ -31,6 +31,9 @@ import Contact_novo from "@/app/components/Contact-novo";
 import axiosInterceptorInstance from "@/app/api/axiosInterceptor";
 import RegexService from "@/app/services/validations/regex.service";
 
+// Criar variável global fora do componente
+let alaresProPlansGlobal: any[] = [];
+
 export default function Internet() {
   const searchParams = useSearchParams();
   const [cityName, setCityName] = useState<any | null>(null);
@@ -44,7 +47,9 @@ export default function Internet() {
   const current = new URLSearchParams(Array.from(searchParams.entries()));
   const [currentSvaIndex, setCurrentSvaIndex] = useState(0);
   const [svaListUpdate, setSvaListUpdate] = useState<string[]>([]);
+  const [alaresPro, setAlaresPro] = useState<any>([]);
   const router = useRouter();
+  let alaresProPlans:any[] = [];
 
   type TypeSva =
     | "STREAMING E MÚSICA"
@@ -83,18 +88,40 @@ export default function Internet() {
       const types = request.data?.types;
       const hasTV = request.data?.hasTV;
       const isGamer = request.data?.isGamer;
-      setActivePlanType(types);
 
+      setActivePlanType(types);
 
       data?.map((d: any) => {
         d.blackFriday = checkBlackFriday(d);
-      })
+        d.alaresPro = checkAlaresPro(d);
 
-      setPlan(data);
+        // Adicionar à variável global se for alaresPro
+        if (d.alaresPro && !alaresProPlansGlobal.some(plan => plan.id === d.id)) {
+          alaresProPlansGlobal.push(d);
+          d.blackFriday = true;
+        }
+      });
+
+      if(type =='Internet Gamer') {
+        data.push(...alaresProPlansGlobal);
+        setPlan(data);
+      }else{
+        setPlan(data.filter((plan: any) => !plan.alaresPro));
+      }
+
       setIsGamer(isGamer);
       setReady(true);
     }
   }
+
+  function checkAlaresPro(offer: any) {
+    if (offer.classification.length > 0) {
+        return offer.classification.some((element: any) => 
+            element.description.includes('alarespro')
+        );
+    }
+    return false;
+}
 
   function checkBlackFriday(offer: any) {
     if (offer.classification.length > 0) {
