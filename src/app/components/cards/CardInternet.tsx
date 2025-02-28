@@ -174,27 +174,27 @@ export default function CardInternet({ plan }: any) {
                     <div className='mb-4'>
                         <div className='pl-4 mb-1'>
                             <div className='flex mb-2'>
-                                <FaWifi className={`w-5 h-5 mr-2 ${getCardStyles(plan, true, true)}`} />
+                                <FaWifi className={`w-5 h-5 mr-2 ${plan.alaresPro ? 'text-[#A29FF3]' : getCardStyles(plan, true, true)}`} />
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[0].name}</span>
                             </div>
 
                             <div className='flex mb-2'>
-                                <FaTools className={`w-5 h-5 mr-2 ${getCardStyles(plan, true, true)}`} />
+                                <FaTools className={`w-5 h-5 mr-2 ${plan.alaresPro ? 'text-[#A29FF3]' : getCardStyles(plan, true, true)}`} />
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[1]?.name}</span>
                             </div>
 
                             <div className='flex mb-2'>
-                                <FaDownload className={`w-5 h-5 mr-2 ${getCardStyles(plan, true, true)}`} />
+                                <FaDownload className={`w-5 h-5 mr-2 ${plan.alaresPro ? 'text-[#A29FF3]' : getCardStyles(plan, true, true)}`} />
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[2]?.name}</span>
                             </div>
 
                             <div className='flex mb-2'>
-                                <FaUpload className={`w-5 h-5 mr-2 ${getCardStyles(plan, true, true)}`} />
+                                <FaUpload className={`w-5 h-5 mr-2 ${plan.alaresPro ? 'text-[#A29FF3]' : getCardStyles(plan, true, true)}`} />
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[3]?.name}</span>
                             </div>
 
                             <div className='flex mb-2'>
-                                <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{['promo', 'promo20'].includes(plan?.contents[4]?.name) ? '' : plan?.contents[4]?.name}</span>
+                                <span className={`text-sm ${plan.alaresPro ? 'text-[#A29FF3]' : getCardStyles(plan, true, false)}`}>{['promo', 'promo20'].includes(plan?.contents[4]?.name) ? '' : plan?.contents[4]?.name}</span>
                             </div>
                         </div>
                     </div>
