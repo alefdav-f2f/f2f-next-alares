@@ -110,12 +110,12 @@ export default function CardOffer({ offer, params }: any) {
                                 <span className={`text-sm ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[1]?.name}</span>
                             </div>
 
-                            <div className='flex mb-2'>
+                            <div className={`flex mb-2 ${params === 'home-2' ? 'hidden' : ''}`}>
                                 <FaDownload className={`w-5 h-5 mr-2 ${offer.blackFriday ? 'text-white' : 'text-main'}`} />
                                 <span className={`text-sm ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[2]?.name}</span>
                             </div>
 
-                            <div className='flex mb-2'>
+                            <div className={`flex mb-2 ${params === 'home-2' ? 'hidden' : ''}`}>
                                 <FaUpload className={`w-5 h-5 mr-2 ${offer.blackFriday ? 'text-white' : 'text-main'}`} />
                                 <span className={`text-sm ${offer.blackFriday ? 'text-white' : 'text-main'}`}>{offer?.contents[3]?.name}</span>
                             </div>
