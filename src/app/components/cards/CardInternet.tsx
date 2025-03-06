@@ -144,8 +144,21 @@ export default function CardInternet({ plan }: any) {
                             {checkIlimitedFone(plan.subtitle) === true ? (
                                 <span>Mega</span>
                             ) : (
-                                <span>{plan.subtitle}</span>
+                                <>
+                                {plan.alaresPro ? (                                    
+                                    <span className='ml-2'>{plan.subtitle.split(' ')[0]}</span>                                    
+                                ) : (
+                                    <span className='ml-2'>{plan.subtitle}</span>
+                                )}
+                                </>
                             )}
+                            <>
+                            {plan.alaresPro ? (
+                                <div className=''>
+                                    <span className=''>{plan.subtitle.split(' ').slice(1).join(' ')}</span>
+                                </div>
+                            ) : null}
+                            </>
                             <div className='mt-[-15px]'>
                                 {checkIlimitedFone(plan.subtitle) === true ? (
                                     <span className='text-sm'>+ Fone Ilimitado</span>
@@ -199,7 +212,7 @@ export default function CardInternet({ plan }: any) {
                         </div>
                     </div>
 
-                    <div className='flex justify-evenly'>
+                    <div className='flex justify-center gap-2'>
                         {plan?.services?.map((service: any) => {
                             return (
                                 <div className='flex bg-white rounded-xl w-12 h-12'>
@@ -228,7 +241,7 @@ export default function CardInternet({ plan }: any) {
                                 </div>
                             </div>
 
-                            <div className={`text-center mb-4  ${plan.highlight ? 'text-white' : 'text-gray-500'}`}>
+                            <div className={`text-center mb-4  ${plan.highlight ? 'text-white' : 'text-gray-500'} ${plan.alaresPro ? 'text-white' : ''}`}>
                                 <span className='text-xs'>Na conta digital</span>
                             </div>
 
@@ -238,9 +251,9 @@ export default function CardInternet({ plan }: any) {
                                 </button>
                             </div>
 
-                            <div className={`text-center  ${plan.highlight ? 'text-white' : 'text-gray-500'}`}>
+                            <div className={`text-center  ${plan.highlight ? 'text-white' : 'text-gray-500'} `}>
                                 <a rel="canonical" href={`/contratos-e-regulamentos${getParams()}`}>
-                                    <span className={`${plan.highlight ? 'text-white' : 'text-main'} text-xs hover:underline`}>Consulte condições</span>
+                                    <span className={`${plan.highlight ? 'text-white' : 'text-main'} ${plan.alaresPro ? 'text-white' : ''} text-xs hover:underline`}>Consulte condições</span>
                                 </a>
                             </div>
                         </div>
