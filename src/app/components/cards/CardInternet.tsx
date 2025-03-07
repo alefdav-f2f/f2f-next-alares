@@ -196,12 +196,12 @@ export default function CardInternet({ plan }: any) {
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[1]?.name}</span>
                             </div>
 
-                            <div className='flex mb-2'>
+                            <div className={`flex mb-2 ${plan.alaresPro ? 'hidden' : ''}`}>
                                 <FaDownload className={`w-5 h-5 mr-2 ${plan.alaresPro ? 'text-[#42A5D0]' : getCardStyles(plan, true, true)}`} />
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[2]?.name}</span>
                             </div>
 
-                            <div className='flex mb-2'>
+                            <div className={`flex mb-2 ${plan.alaresPro ? 'hidden' : ''}`}>
                                 <FaUpload className={`w-5 h-5 mr-2 ${plan.alaresPro ? 'text-[#42A5D0]' : getCardStyles(plan, true, true)}`} />
                                 <span className={`text-sm ${getCardStyles(plan, true, false)}`}>{plan?.contents[3]?.name}</span>
                             </div>
