@@ -26,7 +26,7 @@ export default function Home() {
                             <Banner type={1} />
                         </div>
                         <div>
-                            <Plan2 plan_type={'home'}/>
+                            <Plan2 plan_type={'home-2'}/>
                         </div>
                         <div className="flex justify-center mb-10">
                             <SVA />

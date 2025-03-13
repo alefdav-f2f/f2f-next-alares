@@ -29,6 +29,12 @@ export default function Plan2({ plan_type }: any) {
   const [displayCount, setCount] = useState(3);
   const [planList, setPlan] = useState<any[]>([]);
 
+  function getParams() {
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+    params.delete('plano')
+    return `?${params}`;
+  }
+
   function setActiveSlide(swiper: any) {
     const index = swiper.activeIndex;
 
@@ -134,9 +140,10 @@ export default function Plan2({ plan_type }: any) {
                 </div>
               </div>
             </div>
-            <div className="flex lg:hidden justify-start hover:cursor-pointer select-none h-[550px]">
-              <div className="lg:w-[1000px] w-full ">
-                <Swiper
+            {plan_type === 'home-2' && (
+              <div className="flex lg:hidden justify-start hover:cursor-pointer select-none h-[550px]">
+                <div className="lg:w-[1000px] w-full ">
+                  <Swiper
                   className="h-[550px]"
                   modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                   spaceBetween={25}
@@ -160,6 +167,30 @@ export default function Plan2({ plan_type }: any) {
                 </Swiper>
               </div>
             </div>
+            )}
+            {plan_type === 'home' && (
+              <div className='flex lg:hidden justify-center p-4 hover:cursor-pointer select-none'>
+              <div className='lg:w-[1000px] w-[375px] h-full mt-[-90px] '>
+                <Swiper
+                  modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                  spaceBetween={2}
+                  slidesPerView={displayCount}
+                  navigation
+                  pagination={{ clickable: true }}
+                  onSwiper={(swiper) => setActiveSlide(swiper)}
+                  onSlideChange={(swiper) => { }}
+                >
+                  {planList?.map((offer: any, index) => {
+                    return (
+                      <SwiperSlide key={index} className='px-2 pt-2 max-w-[400px] h-full'>
+                        <CardOffer offer={offer} path={getParams()} />
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+              </div>
+            </div>
+            )}
           </section>
         ) : (
           <>
