@@ -126,14 +126,14 @@ export default function Plan2({ plan_type }: any) {
                 <span className="text-xs">VER MAIS</span>
               </div>
             </div>
-
+          
             <div className="hidden lg:flex justify-center px-4 hover:cursor-pointer select-none mt-6">
               <div className="lg:w-[1200px] w-[200px] h-full]">
                 <div className="flex justify-start">
                   {planList?.map((offer: any, index) => {
                     return (
                       <>
-                        <CardOffer offer={offer} params="home-2" />
+                        <CardOffer offer={offer} params={plan_type} />
                       </>
                     );
                   })}
