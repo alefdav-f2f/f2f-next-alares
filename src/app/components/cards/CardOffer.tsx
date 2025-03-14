@@ -16,6 +16,8 @@ export default function CardOffer({ offer, params }: any) {
     const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
     const current = new URLSearchParams(Array.from(searchParams.entries()));
+    const city_id = getCookie("city_id"); //ID da cidade via cookie
+    const city_name_uf = getCookie("city_name_uf");
 
 
     function navigateContract(path: string, plan: any) {
@@ -180,8 +182,7 @@ export default function CardOffer({ offer, params }: any) {
                                 </div>
                             </div>
                             <div className='text-center mt-[-5px]'>
-                                <span className='text-sub text-xs'>Na conta digital</span>
-                            </div>
+                            {city_name_uf === "Alfenas - MG" ? (<span className='text-sub text-xs'>Para pagamento em dia</span>) : (<span className='text-sub text-xs'>Na conta digital</span>)}                            </div>
                         </div>
                     ) : null}
 
