@@ -7,7 +7,7 @@ interface layoutProps {
     children: ReactNode
 }
 
-const description = "Consulte2 suas faturas em aberto e emita rapidamente a segunda via do boleto do seu plano de internet Alares."
+const description = "Consulte suas faturas em aberto e emita rapidamente a segunda via do boleto do seu plano de internet Alares."
 export const metadata: Metadata = {
     title: {
         absolute: `Segunda via da fatura | Alares Internet`
