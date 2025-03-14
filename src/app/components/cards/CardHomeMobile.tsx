@@ -55,8 +55,8 @@ export default function CardHomeMobile({ offer, params }: any) {
     }
 
     return (
-        <div key={offer.id} className={` h-full w-full overflow-auto pt-[30px]`}>
-            <div className={`relative rounded-br-[30px] border border-[#e2e2f4] bg-[#f1f1fa] flex flex-col gap-y-2 px-[20px] py-[13px]`}>
+        <div key={offer.id} className={` h-full w-full overflow-auto pt-[30px] relative z-0`}>
+            <div className={`relative rounded-br-[30px] border border-[#e2e2f4] bg-[#f1f1fa] flex flex-col gap-y-2 px-[20px] py-[13px] relative z-20`}>
                 <div className='flex justify-center items-center absolute left-[-3px] top-[-20px] '>
                     {offer.highlight ? (
                         <div className={`flex justify-center rounded-br-[50px] pl-[15px] pr-[25px] py-2 border-2 border-white bg-main`}>
@@ -196,7 +196,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                         </a>
                     </div> */}
 
-                    <div className='flex justify-center items-center absolute left-24 z-[-1]'>
+                    <div className='flex justify-center items-center absolute left-24 z-10'>
                         <button onClick={() => navigateContract('/contrate-ja', offer)} className={`px-4 pb-2 pt-4 rounded-full w-[150px] bg-[#00F3A8] text-[#363643] border border-[#e2e2f4] font-[700] text-[13px] `}>
                             {isLoading ? <><Loading /></> : 'Contrate Já'}
                         </button>

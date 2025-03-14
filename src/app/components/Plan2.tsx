@@ -141,10 +141,10 @@ export default function Plan2({ plan_type }: any) {
               </div>
             </div>
             {plan_type === 'home-2' && (
-              <div className="flex lg:hidden justify-start hover:cursor-pointer select-none h-[550px]">
+              <div className="flex lg:hidden justify-start hover:cursor-pointer select-none h-[300px]">
                 <div className="lg:w-[1000px] w-full ">
                   <Swiper
-                  className="h-[550px]"
+                  className="h-[300px]"
                   modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                   spaceBetween={25}
                   slidesPerView={1.2}
