@@ -196,7 +196,7 @@ export default function CardHomeMobile({ offer, params }: any) {
                         </a>
                     </div> */}
 
-                    <div className='flex justify-center items-center absolute left-24 z-10'>
+                    <div className='flex justify-center items-center absolute left-24 z-[-1]'>
                         <button onClick={() => navigateContract('/contrate-ja', offer)} className={`px-4 pb-2 pt-4 rounded-full w-[150px] bg-[#00F3A8] text-[#363643] border border-[#e2e2f4] font-[700] text-[13px] `}>
                             {isLoading ? <><Loading /></> : 'Contrate Já'}
                         </button>
