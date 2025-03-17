@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import melhorPlanoLogo from "@/img/src/Melhor-plano.png";
+import melhorBotelhos from "@/img/src/melhor-botelhos.png";
 import anatelLogo from "@/img/src/anatel-logo.png";
 import abtLogo from "@/img/src/abt.png";
 import abemdLogo from "@/img/src/abemd.png";
@@ -105,6 +106,13 @@ export default function Conquest() {
   const RN = "RN";
 
   const conquerList = [
+    {
+      title: "1º Lugar Melhor Botelhos",
+      logo: melhorBotelhos,
+      conquests: [
+        { year: 2025, brand: alares, city: botelhos },
+      ],
+    },
     {
       title: "1º Lugar Melhor Velocidade",
       logo: melhorPlanoLogo,
@@ -413,6 +421,30 @@ export default function Conquest() {
                                       <TableBody>
                                         {conquer.conquests?.map(
                                           (conq: any, index: number) => {
+                                            if(selectedYear != null) {
+                                            return (
+                                              <>
+                                                <TableRow key={index}>
+                                                  {selectedYear === null ? (
+                                                    <TableCell className="font-medium">
+                                                      {conq.year}
+                                                    </TableCell>
+                                                  ) : null}
+                                                  {selectedYear === conq.year ? (
+                                                  <TableCell>
+                                                    {conq.brand}
+                                                  </TableCell>
+                                                  ) : null}
+                                                  {selectedYear === conq.year ? (
+                                                  <TableCell>
+                                                    {conq.city}
+                                                  </TableCell>
+                                                  ) : null}
+                                                </TableRow>
+                                              </>
+                                            );
+                                            
+                                          }else{
                                             return (
                                               <>
                                                 <TableRow key={index}>
@@ -430,6 +462,8 @@ export default function Conquest() {
                                                 </TableRow>
                                               </>
                                             );
+                                            
+                                          }
                                           }
                                         )}
                                       </TableBody>
