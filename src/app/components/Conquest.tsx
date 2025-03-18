@@ -51,220 +51,251 @@ export default function Conquest() {
   const link_1 =
     "https://tribunadonorte.com.br/especiais-tribuna-do-norte/top-natal/confira-os-vencedores-dos-29-segmentos-do-premio-top-natal-2023/";
 
-  const alares = "Alares";
-  const conexao = "Conexão";
-  const cabotelecom = "Cabo Telecom";
-  const starweb = "Starweb";
-  const webby = "Webby";
-  const outcenter = "Outcenter";
-  const multiplay = "Multiplay";
-  const tecnet = "Tecnet";
-
-  const aguaDaPrata = "Águas da Prata (SP)";
-  const bastos = "Bastos (SP)";
-  const bernardino = "Bernardino de Campos (SP)";
-  const botelhos = "Botelhos (MG)";
-  const candidoMota = "Candido Mota (SP)";
-  const capestre = "Capestre (MG)";
-  const casaBranca = "Casa Branca (SP)";
-  const caconde = "Caconde (SP)";
-  const caucaia = "Caucaia (CE)";
-  const conceicaoDoRioVerde = "Conceição do Rio Verde (MG)";
-  const divinolandia = "Divinolândia (SP)";
-  const jacarezinho = "Jacarezinho (PR)";
-  const mococa = "Mococa (SP)";
-  const martinopolis = "Martinópolis (SP)";
-  const natal = "Natal (RN)";
-  const ipaussu = "Ipaussu (SP)";
-  const ibirarema = "Ibirarema (SP)";
-  const itamonte = "Itamonte (MG)";
-  const itajuaba = "Itajubá (MG)";
-  const itanhandu = "Itanhadu (MG)";
-  const itobi = "Itobi (SP)";
-  const ourinhos = "Ourinhos (SP)";
-  const palmital = "Palmital (SP)";
-  const passoQuatro = "Passso Quatro (MG)";
-  const parapua = "Parapuã (SP)";
-  const piraju = "Piraju (SP)";
-  const pousoAlto = "Pouso Alto (MG)";
-  const pousoAlegre = "Pouso Alegre (MG)";
-  const portoSeguro = "Porto Seguro (BA)";
-  const pocosDeCaldas = "Poços de Caldas (MG)";
-  const santaMariana = "Santa Mariana (PR)";
-  const saltoGrande = "Salto Grande (SP)";
-  const santaCruzCabralia = "Santa Cruz Cabrália (BA)";
-  const saoJoaoDaBoaVista = "São João da Boa Vista (SP)";
-  const saoGoncaloDoAmarante = "São Gonçalo do Amarante (RN)";
-  const siqueiraCampos = "Siqueira Campos (PR)";
-  const taguai = "Taguaí (SP)";
-  const tapiratiba = "Taguaí (SP)";
-  const tupa = "Tupã (SP)";
-  const varginha = "Varginha (MG)";
-  const vargemGrandeDoSul = "Vargem Grande Do Sul (SP)";
-
-  const CE = "CE";
-  const RN = "RN";
-
-  const conquerList = [
-    {
-      title: "1º Lugar Melhor Botelhos",
-      logo: melhorBotelhos,
-      conquests: [
-        { year: 2025, brand: alares, city: botelhos },
-      ],
-    },
-    {
-      title: "1º Lugar Melhor Velocidade",
-      logo: melhorPlanoLogo,
-      conquests: [
-        { year: 2022, brand: starweb, city: itanhandu },
-        { year: 2024, brand: webby, city: bastos },
-        { year: 2024, brand: webby, city: palmital },
-        { year: 2024, brand: webby, city: ipaussu },
-        { year: 2024, brand: webby, city: candidoMota },
-        { year: 2024, brand: webby, city: piraju },
-        { year: 2024, brand: webby, city: santaMariana },
-        { year: 2024, brand: webby, city: saltoGrande },
-        { year: 2024, brand: webby, city: martinopolis },
-        { year: 2024, brand: webby, city: bernardino },
-        { year: 2024, brand: webby, city: ibirarema },
-        { year: 2024, brand: webby, city: parapua },
-        { year: 2024, brand: webby, city: siqueiraCampos },
-        { year: 2024, brand: webby, city: jacarezinho },
-        { year: 2024, brand: webby, city: taguai },
-        { year: 2024, brand: webby, city: tupa },
-        { year: 2024, brand: webby, city: ourinhos },
-
-        { year: 2023, brand: outcenter, city: divinolandia },
-        { year: 2023, brand: outcenter, city: casaBranca },
-        { year: 2023, brand: outcenter, city: caconde },
-        { year: 2023, brand: outcenter, city: itobi },
-        { year: 2023, brand: starweb, city: varginha },
-        { year: 2023, brand: starweb, city: pousoAlto },
-        { year: 2023, brand: starweb, city: passoQuatro },
-        { year: 2023, brand: starweb, city: itanhandu },
-        { year: 2023, brand: starweb, city: itamonte },
-        { year: 2023, brand: starweb, city: conceicaoDoRioVerde },
-        { year: 2023, brand: outcenter, city: capestre },
-        { year: 2023, brand: outcenter, city: botelhos },
-        { year: 2022, brand: outcenter, city: vargemGrandeDoSul },
-        { year: 2022, brand: conexao, city: tapiratiba },
-        { year: 2022, brand: outcenter, city: casaBranca },
-        { year: 2022, brand: outcenter, city: caconde },
-        { year: 2022, brand: conexao, city: aguaDaPrata },
-        { year: 2022, brand: starweb, city: pousoAlto },
-        { year: 2022, brand: starweb, city: itamonte },
-        { year: 2022, brand: starweb, city: itajuaba },
-        { year: 2022, brand: starweb, city: conceicaoDoRioVerde },
-        { year: 2022, brand: outcenter, city: botelhos },
-        { year: 2022, brand: outcenter, city: santaCruzCabralia },
-        { year: 2022, brand: multiplay, city: CE },
-
-        { year: 2021, brand: outcenter, city: vargemGrandeDoSul },
-        { year: 2021, brand: outcenter, city: caconde },
-        { year: 2021, brand: starweb, city: pousoAlegre },
-        { year: 2021, brand: tecnet, city: caucaia },
-        { year: 2021, brand: outcenter, city: portoSeguro },
-        { year: 2021, brand: conexao, city: mococa },
-
-        { year: 2020, brand: conexao, city: vargemGrandeDoSul },
-        { year: 2020, brand: conexao, city: mococa },
-        { year: 2020, brand: cabotelecom, city: natal },
-        { year: 2020, brand: starweb, city: pousoAlegre },
-        { year: 2020, brand: outcenter, city: portoSeguro },
-        { year: 2019, brand: cabotelecom, city: RN },
-      ],
-    },
-    {
-      title: "1º Lugar Maior Satisfação",
-      logo: melhorPlanoLogo,
-      conquests: [
-        { year: 2024, brand: webby, city: martinopolis },
-        { year: 2023, brand: outcenter, city: saoJoaoDaBoaVista },
-        { year: 2023, brand: starweb, city: varginha },
-        { year: 2023, brand: outcenter, city: pocosDeCaldas },
-        { year: 2023, brand: starweb, city: itanhandu },
-      ],
-    },
-    {
-      title: "1º Lugar Melhor Satisfação",
-      logo: melhorPlanoLogo,
-      conquests: [
-        { year: 2021, brand: conexao, city: mococa },
-        { year: 2022, brand: conexao, city: mococa },
-        { year: 2020, brand: conexao, city: mococa },
-      ],
-    },
-    {
-      title: "1º Lugar Melhor Provedor",
-      logo: melhorPlanoLogo,
-      conquests: [
-        { year: 2024, brand: webby, city: martinopolis },
-        { year: 2024, brand: webby, city: ourinhos },
-        { year: 2023, brand: outcenter, city: pocosDeCaldas },
-        { year: 2022, brand: conexao, city: mococa },
-        { year: 2022, brand: starweb, city: varginha },
-        { year: 2021, brand: conexao, city: mococa },
-        { year: 2021, brand: starweb, city: varginha },
-        { year: 2020, brand: cabotelecom, city: natal },
-        { year: 2019, brand: cabotelecom, city: RN },
-        { year: 2020, brand: conexao, city: mococa },
-        { year: 2020, brand: starweb, city: itanhandu },
-      ],
-    },
-    {
-      title: "1º Lugar Melhor Internet Gamer",
-      logo: melhorPlanoLogo,
-      conquests: [
-        { year: 2023, brand: outcenter, city: itobi },
-        { year: 2023, brand: outcenter, city: divinolandia },
-        { year: 2023, brand: outcenter, city: casaBranca },
-        { year: 2023, brand: outcenter, city: caconde },
-        { year: 2023, brand: cabotelecom, city: saoGoncaloDoAmarante },
-        { year: 2023, brand: starweb, city: varginha },
-        { year: 2023, brand: starweb, city: pousoAlto },
-        { year: 2023, brand: starweb, city: passoQuatro },
-        { year: 2023, brand: starweb, city: itanhandu },
-        { year: 2023, brand: outcenter, city: capestre },
-        { year: 2023, brand: starweb, city: itamonte },
-        { year: 2023, brand: starweb, city: conceicaoDoRioVerde },
-        { year: 2023, brand: outcenter, city: botelhos },
-      ],
-    },
-    {
-      title: "1º Lugar Melhor Banda Larga",
-      logo: anatelLogo,
-      conquests: [
-        { year: 2015, brand: cabotelecom, city: "-" },
-        { year: 2016, brand: cabotelecom, city: "-" },
-        { year: 2017, brand: cabotelecom, city: "-" },
-      ],
-    },
-    {
-      title: "2º Lugar Melhor TV por Assinatura",
-      logo: anatelLogo,
-      conquests: [
-        { year: 2016, brand: cabotelecom, city: "-" },
-        { year: 2017, brand: cabotelecom, city: "-" },
-        { year: 2018, brand: cabotelecom, city: "-" },
-      ],
-    },
-    {
-      title: "2º Lugar Prêmio ABT - Atendimento em redes sociais",
-      logo: abtLogo,
-      conquests: [{ year: 2024, brand: alares, city: "-" }],
-    },
-    {
-      title: "2º Lugar Prêmio ABEMD - Call Center",
-      logo: abemdLogo,
-      conquests: [{ year: 2024, brand: alares, city: "-" }],
-    },
-    {
-      title: "3º Lugar Prêmio ABT - Operação de cobrança",
-      logo: abtLogo,
-      conquests: [{ year: 2024, brand: alares, city: "-" }],
-    },
-  ];
+    const alares = 'Alares';
+    const conexao = 'Conexão';
+    const cabotelecom = 'Cabo Telecom';
+    const starweb = 'Starweb';
+    const webby = 'Webby';
+    const outcenter = 'Outcenter';
+    const multiplay = 'Multiplay';
+    const tecnet = 'Tecnet';
+  
+    const aguaDaPrata = 'Águas da Prata (SP)';
+    const bastos = 'Bastos (SP)';
+    const bernardino = 'Bernardino de Campos (SP)';
+    const botelhos = 'Botelhos (MG)';
+    const caldas = 'Caldas (MG)';
+    const candidoMota = 'Candido Mota (SP)';
+    const capestre = 'Capestre (MG)';
+    const casaBranca = 'Casa Branca (SP)';
+    const caconde = 'Caconde (SP)';
+    const caucaia = 'Caucaia (CE)';
+    const cristina = 'Cristina (MG)';
+    const cruzilia = 'Cruzilia (MG)';
+    const conceicaoDoRioVerde = 'Conceição do Rio Verde (MG)';
+    const divinolandia = 'Divinolândia (SP)';
+    const jacarezinho = 'Jacarezinho (PR)';
+    const mococa = 'Mococa (SP)';
+    const martinopolis = 'Martinópolis (SP)';
+    const natal = 'Natal (RN)';
+    const ipaussu = 'Ipaussu (SP)';
+    const ibirarema = 'Ibirarema (SP)';
+    const itamonte = 'Itamonte (MG)';
+    const itajuaba = 'Itajubá (MG)';
+    const itanhandu = 'Itanhadu (MG)';
+    const itobi = 'Itobi (SP)';
+    const ourinhos = 'Ourinhos (SP)';
+    const palmital = 'Palmital (SP)';
+    const passoQuatro = 'Passso Quatro (MG)';
+    const parapua = 'Parapuã (SP)';
+    const piraju = 'Piraju (SP)';
+    const passaQuatro = 'Passa Quatro (MG)';
+    const pousoAlto = 'Pouso Alto (MG)';
+    const pousoAlegre = 'Pouso Alegre (MG)';
+    const portoSeguro = 'Porto Seguro (BA)';
+    const pocosDeCaldas = 'Poços de Caldas (MG)';
+    const santaMariana = 'Santa Mariana (PR)';
+    const saltoGrande = 'Salto Grande (SP)';
+    const santaCruzCabralia = 'Santa Cruz Cabrália (BA)';
+    const saoJoaoDaBoaVista = 'São João da Boa Vista (SP)';
+    const saoLourenco = 'São Lourenço (MG)';
+    const saoGoncaloDoAmarante = 'São Gonçalo do Amarante (RN)';
+    const siqueiraCampos = 'Siqueira Campos (PR)';
+    const taguai = 'Taguaí (SP)';
+    const tapiratiba = 'Taguaí (SP)';
+    const tresPontas = 'Três Pontas (MG)';
+    const tupa = 'Tupã (SP)';
+    const varginha = 'Varginha (MG)';
+    const vargemGrandeDoSul = 'Vargem Grande Do Sul (SP)';
+  
+    const CE = 'CE';
+    const RN = 'RN';
+  
+    const conquerList = [
+      {
+        title: "1º Lugar Melhor Botelhos",
+        logo: melhorBotelhos,
+        conquests: [
+          { year: 2025, brand: alares, city: botelhos },
+        ],
+      },
+      {
+        title: '1º Lugar Melhor Velocidade',
+        logo: melhorPlanoLogo,
+        conquests: [
+          { year: 2025, brand: alares, city: caldas },
+          { year: 2025, brand: alares, city: conceicaoDoRioVerde },
+          { year: 2025, brand: alares, city: itanhandu },
+          { year: 2025, brand: alares, city: passaQuatro },
+          { year: 2025, brand: alares, city: tresPontas },
+          { year: 2025, brand: alares, city: saoLourenco },
+          { year: 2025, brand: alares, city: pousoAlto },
+          { year: 2025, brand: alares, city: passaQuatro },
+          { year: 2022, brand: starweb, city: itanhandu },
+          { year: 2024, brand: webby, city: bastos },
+          { year: 2024, brand: webby, city: palmital },
+          { year: 2024, brand: webby, city: ipaussu },
+          { year: 2024, brand: webby, city: candidoMota },
+          { year: 2024, brand: webby, city: piraju },
+          { year: 2024, brand: webby, city: santaMariana },
+          { year: 2024, brand: webby, city: saltoGrande },
+          { year: 2024, brand: webby, city: martinopolis },
+          { year: 2024, brand: webby, city: bernardino },
+          { year: 2024, brand: webby, city: ibirarema },
+          { year: 2024, brand: webby, city: parapua },
+          { year: 2024, brand: webby, city: siqueiraCampos },
+          { year: 2024, brand: webby, city: jacarezinho },
+          { year: 2024, brand: webby, city: taguai },
+          { year: 2024, brand: webby, city: tupa },
+          { year: 2024, brand: webby, city: ourinhos },
+  
+          { year: 2023, brand: outcenter, city: divinolandia },
+          { year: 2023, brand: outcenter, city: casaBranca },
+          { year: 2023, brand: outcenter, city: caconde },
+          { year: 2023, brand: outcenter, city: itobi },
+          { year: 2023, brand: starweb, city: varginha },
+          { year: 2023, brand: starweb, city: pousoAlto },
+          { year: 2023, brand: starweb, city: passoQuatro },
+          { year: 2023, brand: starweb, city: itanhandu },
+          { year: 2023, brand: starweb, city: itamonte },
+          { year: 2023, brand: starweb, city: conceicaoDoRioVerde },
+          { year: 2023, brand: outcenter, city: capestre },
+          { year: 2023, brand: outcenter, city: botelhos },
+          { year: 2022, brand: outcenter, city: vargemGrandeDoSul },
+          { year: 2022, brand: conexao, city: tapiratiba },
+          { year: 2022, brand: outcenter, city: casaBranca },
+          { year: 2022, brand: outcenter, city: caconde },
+          { year: 2022, brand: conexao, city: aguaDaPrata },
+          { year: 2022, brand: starweb, city: pousoAlto },
+          { year: 2022, brand: starweb, city: itamonte },
+          { year: 2022, brand: starweb, city: itajuaba },
+          { year: 2022, brand: starweb, city: conceicaoDoRioVerde },
+          { year: 2022, brand: outcenter, city: botelhos },
+          { year: 2022, brand: outcenter, city: santaCruzCabralia },
+          { year: 2022, brand: multiplay, city: CE },
+  
+          { year: 2021, brand: outcenter, city: vargemGrandeDoSul },
+          { year: 2021, brand: outcenter, city: caconde },
+          { year: 2021, brand: starweb, city: pousoAlegre },
+          { year: 2021, brand: tecnet, city: caucaia },
+          { year: 2021, brand: outcenter, city: portoSeguro },
+          { year: 2021, brand: conexao, city: mococa },
+  
+          { year: 2020, brand: conexao, city: vargemGrandeDoSul },
+          { year: 2020, brand: conexao, city: mococa },
+          { year: 2020, brand: cabotelecom, city: natal },
+          { year: 2020, brand: starweb, city: pousoAlegre },
+          { year: 2020, brand: outcenter, city: portoSeguro },
+          { year: 2019, brand: cabotelecom, city: RN },
+        ],
+      },
+      {
+        title: '1º Lugar Maior Satisfação',
+        logo: melhorPlanoLogo,
+        conquests: [
+          { year: 2024, brand: webby, city: martinopolis },
+          { year: 2023, brand: outcenter, city: saoJoaoDaBoaVista },
+          { year: 2023, brand: starweb, city: varginha },
+          { year: 2023, brand: outcenter, city: pocosDeCaldas },
+          { year: 2023, brand: starweb, city: itanhandu },
+        ],
+      },
+      {
+        title: '1º Lugar Melhor Satisfação',
+        logo: melhorPlanoLogo,
+        conquests: [
+          { year: 2025, brand: alares, city: varginha },
+          { year: 2025, brand: alares, city: saoLourenco },
+          { year: 2021, brand: conexao, city: mococa },
+          { year: 2022, brand: conexao, city: mococa },
+          { year: 2020, brand: conexao, city: mococa },
+        ],
+      },
+      {
+        title: '1º Lugar Melhor Provedor',
+        logo: melhorPlanoLogo,
+        conquests: [
+          { year: 2025, brand: alares, city: varginha },
+          { year: 2025, brand: alares, city: saoLourenco },
+          { year: 2024, brand: webby, city: martinopolis },
+          { year: 2024, brand: webby, city: ourinhos },
+          { year: 2023, brand: outcenter, city: pocosDeCaldas },
+          { year: 2022, brand: conexao, city: mococa },
+          { year: 2022, brand: starweb, city: varginha },
+          { year: 2021, brand: conexao, city: mococa },
+          { year: 2021, brand: starweb, city: varginha },
+          { year: 2020, brand: cabotelecom, city: natal },
+          { year: 2019, brand: cabotelecom, city: RN },
+          { year: 2020, brand: conexao, city: mococa },
+          { year: 2020, brand: starweb, city: itanhandu },
+        ],
+      },
+      {
+        title: '1º Lugar Maior Estabilidade',
+        logo: melhorPlanoLogo,
+        conquests: [
+          { year: 2025, brand: alares, city: caldas },
+          { year: 2025, brand: alares, city: cristina },
+          { year: 2025, brand: alares, city: cruzilia },
+          { year: 2025, brand: alares, city: pousoAlto },
+        ],
+      },
+      {
+        title: '1º Lugar Melhor Internet Gamer',
+        logo: melhorPlanoLogo,
+        conquests: [
+          { year: 2025, brand: alares, city: caldas },
+          { year: 2025, brand: alares, city: cristina },
+          { year: 2025, brand: alares, city: pousoAlto },
+          { year: 2023, brand: outcenter, city: itobi },
+          { year: 2023, brand: outcenter, city: divinolandia },
+          { year: 2023, brand: outcenter, city: casaBranca },
+          { year: 2023, brand: outcenter, city: caconde },
+          { year: 2023, brand: cabotelecom, city: saoGoncaloDoAmarante },
+          { year: 2023, brand: starweb, city: varginha },
+          { year: 2023, brand: starweb, city: pousoAlto },
+          { year: 2023, brand: starweb, city: passoQuatro },
+          { year: 2023, brand: starweb, city: itanhandu },
+          { year: 2023, brand: outcenter, city: capestre },
+          { year: 2023, brand: starweb, city: itamonte },
+          { year: 2023, brand: starweb, city: conceicaoDoRioVerde },
+          { year: 2023, brand: outcenter, city: botelhos },
+        ],
+      },
+      {
+        title: '1º Lugar Melhor Banda Larga',
+        logo: anatelLogo,
+        conquests: [
+          { year: 2015, brand: cabotelecom, city: '-' },
+          { year: 2016, brand: cabotelecom, city: '-' },
+          { year: 2017, brand: cabotelecom, city: '-' },
+        ],
+      },
+      {
+        title: '2º Lugar Melhor TV por Assinatura',
+        logo: anatelLogo,
+        conquests: [
+          { year: 2016, brand: cabotelecom, city: '-' },
+          { year: 2017, brand: cabotelecom, city: '-' },
+          { year: 2018, brand: cabotelecom, city: '-' },
+        ],
+      },
+      {
+        title: '2º Lugar Prêmio ABT - Atendimento em redes sociais',
+        logo: abtLogo,
+        conquests: [{ year: 2024, brand: alares, city: '-' }],
+      },
+      {
+        title: '2º Lugar Prêmio ABEMD - Call Center',
+        logo: abemdLogo,
+        conquests: [{ year: 2024, brand: alares, city: '-' }],
+      },
+      {
+        title: '3º Lugar Prêmio ABT - Operação de cobrança',
+        logo: abtLogo,
+        conquests: [{ year: 2024, brand: alares, city: '-' }],
+      },
+    ];
 
   async function getYears() {
     let array: number[] = [];
