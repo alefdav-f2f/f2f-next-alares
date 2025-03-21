@@ -212,7 +212,8 @@ export default function CardInternet({ plan }: any) {
                         </div>
                     </div>
 
-                    <div className='flex justify-center gap-2'>
+                    <div className='flex justify-center items-center gap-2'>
+                        <span className={`${plan.highlight ? 'bg-sub' : ''} ${plan.alaresPro ? 'bg-[#42A5D0]' : 'bg-main'} text-xs text-white rounded-full px-3 py-2 font-bold`}>+</span>
                         {plan?.services?.map((service: any) => {
                             return (
                                 <div className='flex bg-white rounded-xl w-12 h-12'>
@@ -235,14 +236,14 @@ export default function CardInternet({ plan }: any) {
                                     <div className='mb-[-10px]'>
                                         <span className='text-xs'> {getSecond(plan.price)}</span>
                                     </div>
-                                    <div className={`${plan.highlight ? 'text-white' : 'text-gray-500'}`}>
-                                        <span className='text-xs mt-[-10px]'>mês</span>
+                                    <div className={`${plan.alaresPro ? 'text-white' : 'text-gray-500'} ${plan.highlight ? 'text-white' : 'text-gray-500'}`}>
+                                        <span className='text-xs mt-[-10px]'>/mês</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className={`text-center mb-4  ${plan.highlight ? 'text-white' : 'text-gray-500'} ${plan.alaresPro ? 'text-white' : ''}`}>
-                                <span className='text-xs'>Na conta digital</span>
+                                <span className={`${plan.alaresPro ? 'text-[10px]' : 'text-xs'} `}>na conta digital</span>
                             </div>
 
                             <div className='flex justify-center items-center'>
@@ -253,7 +254,7 @@ export default function CardInternet({ plan }: any) {
 
                             <div className={`text-center  ${plan.highlight ? 'text-white' : 'text-gray-500'} `}>
                                 <a rel="canonical" href={`/contratos-e-regulamentos${getParams()}`}>
-                                    <span className={`${plan.highlight ? 'text-white' : 'text-main'} ${plan.alaresPro ? 'text-white' : ''} text-xs hover:underline`}>Consulte condições</span>
+                                    <span className={`${plan.highlight ? 'text-white' : 'text-main'} ${plan.alaresPro ? 'text-white text-[10px]' : 'text-xs'} hover:underline`}>Consulte condições</span>
                                 </a>
                             </div>
                         </div>
@@ -294,7 +295,7 @@ export default function CardInternet({ plan }: any) {
 
                             <div className={`text-center  ${plan.highlight ? 'text-white' : 'text-gray-500'}`}>
                                 <a rel="canonical" href={`/contratos-e-regulamentos${getParams()}`}>
-                                    <span className='text-xs hover:underline'>Consulte condições</span>
+                                    <span className={`${plan.alaresPro ? 'text-[10px]' : 'text-xs'} hover:underline`}>Consulte condições</span>
                                 </a>
                             </div>
                         </div>
