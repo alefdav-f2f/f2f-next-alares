@@ -117,13 +117,7 @@ export default function Conquest() {
         logo: melhorBotelhos,
         conquests: [
           { year: 2025, brand: alares, city: botelhos },
-        ],
-      },
-      {
-        title: "1º Lugar Melhor Botelhos",
-        logo: melhorBotelhos,
-        conquests: [
-          { year: 2025, brand: alares, city: pocosDeCaldas },
+          { year: 2025, brand: alares, city: pocosDeCaldas }
         ],
       },
       {
