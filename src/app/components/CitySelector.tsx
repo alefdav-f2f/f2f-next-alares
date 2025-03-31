@@ -9,6 +9,8 @@ import LoadingAlares from "./loadings/LoadingAlares";
 import Loading from "./loadings/Loading";
 import DataLayerService from "../services/api/datalayer.service";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import ContactForm from "./ContactForm";
+import CityService from "../services/api/city.service";
 
 import icon from "@/img/icon_selector.png";
 import bg from "@/img/bg-selector.png";
@@ -31,9 +33,11 @@ export default function CitySelector({ reload, check_city }: props) {
   const [open, setOpen] = React.useState(false);
   const [source, setSource] = React.useState<any>();
   const city_slug = getCookie("city_slug");
-  const [allCities, setAllCities] = React.useState<CityProps[]>([]);
-  const [selectedCity, setSelectedCity] = React.useState<any>(null);
+  const [selectedCity, setSelectedCity] = React.useState<CityProps | null>(null);
   const [inputValue, setInputValue] = React.useState("");
+  const [showContactForm, setShowContactForm] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
   function sendDataLayer(dataCity: any) {
     const data = {
@@ -46,111 +50,21 @@ export default function CitySelector({ reload, check_city }: props) {
       user_id: searchParams.get("utm_campaign") ?? "",
     };
 
-    console.log(data);
     DataLayerService.sender(data);
   }
 
   async function loadAllCities() {
     try {
-      const statesRequest = await axiosInterceptorInstance.get(
-        "/uf/paginate-without-auth",
-        {
-          params: {
-            isActive: true,
-            page: 1,
-            perPage: 99999,
-          },
-        }
-      );
-
-      if (statesRequest.status === 200) {
-        const states = statesRequest.data?.data;
-        let cities: CityProps[] = [];
-
-        for (const state of states) {
-          const citiesRequest = await axiosInterceptorInstance.get(
-            `/city/get-by-uf-without-auth`,
-            {
-              params: {
-                id: state.id,
-                isActive: true,
-              },
-            }
-          );
-
-          if (citiesRequest.status === 200) {
-            cities = [...cities, ...citiesRequest.data];
-          }
-        }
-
-        cities.forEach(function (element: any) {
-          element.value = element.name.toLowerCase();
-        });
-
-        setAllCities(cities);
-      }
+      const cities = await CityService.getAllCities();
+      setCity(cities);
+      setLoading(false);
     } catch (error) {
       console.error("Erro ao carregar cidades:", error);
+      setLoading(false);
     }
   }
 
-  async function getAllCities(searchTerm: string) {
-    setLoadingCity(true);
-
-    try {
-      const statesRequest = await axiosInterceptorInstance.get(
-        "/uf/paginate-without-auth",
-        {
-          params: {
-            isActive: true,
-            page: 1,
-            perPage: 99999,
-          },
-        }
-      );
-
-      if (statesRequest.status === 200) {
-        const states = statesRequest.data?.data;
-        let allCities: CityProps[] = [];
-
-        // Para cada estado, busca suas cidades
-        for (const state of states) {
-          const citiesRequest = await axiosInterceptorInstance.get(
-            `/city/get-by-uf-without-auth`,
-            {
-              params: {
-                id: state.id,
-                isActive: true,
-              },
-            }
-          );
-
-          if (citiesRequest.status === 200) {
-            allCities = [...allCities, ...citiesRequest.data];
-          }
-        }
-
-        // Formata e filtra as cidades
-        allCities.forEach(function (element: any) {
-          element.value = element.name.toLowerCase();
-        });
-
-        const filteredData = allCities.filter(city => 
-          city.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        setCity(allCities);
-        setFilteredCity(filteredData);
-      }
-    } catch (error) {
-      console.error("Erro ao buscar cidades:", error);
-      setFilteredCity([]);
-    } finally {
-      setLoadingCity(false);
-    }
-  }
-
-  function filterCity(event: any) {
+  async function filterCity(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
     setInputValue(value);
 
@@ -160,11 +74,14 @@ export default function CitySelector({ reload, check_city }: props) {
       setSelectedCity(null);
     } else {
       setOpen(true);
-      getAllCities(value);
+      setLoadingCity(true);
+      const filteredCities = await CityService.searchCities(value, cityList);
+      setFilteredCity(filteredCities);
+      setLoadingCity(false);
     }
   }
 
-  function handleCitySelect(city: any) {
+  function handleCitySelect(city: CityProps) {
     setSelectedCity(city);
     setInputValue(city.name);
     setOpen(false);
@@ -176,7 +93,7 @@ export default function CitySelector({ reload, check_city }: props) {
     }
   }
 
-  async function setCookieFunction(value: any) {
+  async function setCookieFunction(value: string) {
     clearCookie();
 
     let path = "";
@@ -285,52 +202,20 @@ export default function CitySelector({ reload, check_city }: props) {
             return;
           }
 
-          const statesRequest = await axiosInterceptorInstance.get(
-            "/uf/paginate-without-auth",
-            {
-              params: {
-                isActive: true,
-                page: 1,
-                perPage: 99999,
-              },
-            }
-          );
+          const normalizedSearchName = cityName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          const matchingCity = cityList.find(city => {
+            const normalizedCityName = city.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return normalizedCityName.includes(normalizedSearchName) || 
+                   normalizedSearchName.includes(normalizedCityName);
+          });
 
-          if (statesRequest.status === 200) {
-            const states = statesRequest.data?.data;
-            let allCities = [];
-
-            for (const state of states) {
-              const citiesRequest = await axiosInterceptorInstance.get(
-                `/city/get-by-uf-without-auth`,
-                {
-                  params: {
-                    id: state.id,
-                    isActive: true,
-                  },
-                }
-              );
-
-              if (citiesRequest.status === 200) {
-                allCities = [...allCities, ...citiesRequest.data];
-              }
-            }
-
-            const normalizedSearchName = cityName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const matchingCity = allCities.find(city => {
-              const normalizedCityName = city.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-              return normalizedCityName.includes(normalizedSearchName) || 
-                     normalizedSearchName.includes(normalizedCityName);
-            });
-
-            if (matchingCity) {
-              handleCitySelect(matchingCity);
-              toast.success(`Encontramos ${matchingCity.name} próximo a você!`);
-            } else {
-              toast.error("Não encontramos sua cidade em nossa base");
-              setInputValue("");
-              setSelectedCity(null);
-            }
+          if (matchingCity) {
+            handleCitySelect(matchingCity);
+            toast.success(`Encontramos ${matchingCity.name} próximo a você!`);
+          } else {
+            toast.error("Não encontramos sua cidade em nossa base");
+            setInputValue("");
+            setSelectedCity(null);
           }
         } catch (error) {
           console.error("Erro ao buscar cidades:", error);
@@ -343,6 +228,7 @@ export default function CitySelector({ reload, check_city }: props) {
       },
       (error) => {
         setLoadingCity(false);
+        toast.error("Erro ao obter sua localização");
       },
       {
         enableHighAccuracy: true,
@@ -351,6 +237,19 @@ export default function CitySelector({ reload, check_city }: props) {
       }
     );
   }
+
+  const openModal = () => {
+    setShowContactForm(true);
+    setIsClosing(false);
+  };
+
+  const closeModal = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowContactForm(false);
+      setIsClosing(false);
+    }, 300);
+  };
 
   React.useEffect(() => {
     const queryString = window.location.search.substring(1);
@@ -387,14 +286,17 @@ export default function CitySelector({ reload, check_city }: props) {
                 style={{ backgroundImage: `url(${bg.src})` }}
                 className="bg-cover bg-no-repeat bg-center w-full h-[545px] flex items-end justify-center"
               >
-                <div className="flex flex-col items-center bg-[#F1F1FA] rounded-lg p-4 w-[739px] mx-auto">
+                <div className="flex flex-col items-center bg-[#F1F1FA] rounded-lg p-4 w-[90%] sm:w-[739px] mx-auto">
                   <div className="mb-4 flex justify-center">
                     <img src={icon.src} alt="icon" />
                   </div>
 
                   <div className="text-center mb-6">
-                    <span className="text-[#3C34F2] text-[32px] font-bold">
+                    <span className="text-[#3C34F2] sm:text-[32px] text-[30px] font-bold">
                       Encontre sua cidade
+                    </span>
+                    <span className="block sm:hidden text-[15px] text-[#363643] font-regular">
+                      Informe abaixo sua localização
                     </span>
                   </div>
 
@@ -405,7 +307,7 @@ export default function CitySelector({ reload, check_city }: props) {
                         id="inputCity"
                         onFocus={() => setOpen(true)}
                         onClick={() => setOpen(true)}
-                        onChange={(e) => filterCity(e)}
+                        onChange={filterCity}
                         placeholder="Digite sua cidade"
                         value={inputValue}
                         className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#3C34F2]"
@@ -458,33 +360,32 @@ export default function CitySelector({ reload, check_city }: props) {
                       </div>
                     )}
 
-                    
+                    <div className="mt-4 mb-4 text-center">
+                      <p className="text-[#848490] text-[13px] font-regular sm:font-semibold">ou, se preferir</p>
+                      <button 
+                        onClick={handleGeolocation}
+                        disabled={loadingCity}
+                        className="underline mt-2 text-[#3C34F2] font-bold flex items-center justify-center gap-2 mx-auto hover:text-[#322BC3] transition-colors duration-200"
+                      >
+                        {loadingCity ? (
+                          <Loading />
+                        ) : (
+                          <>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Usar minha geolocalização
+                          </>
+                        )}
+                      </button>
+                    </div>
 
-                  <div className="mt-4 mb-4 text-center">
-                    <p className="text-[#848490] text-[13px] font-semibold">ou, se preferir</p>
-                    <button 
-                      onClick={handleGeolocation}
-                      disabled={loadingCity}
-                      className="mt-2 text-[#3C34F2] flex items-center justify-center gap-2 mx-auto hover:text-[#322BC3] transition-colors duration-200"
-                    >
-                      {loadingCity ? (
-                        <Loading />
-                      ) : (
-                        <>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
-                          Usar minha geolocalização
-                        </>
-                      )}
-                    </button>
-                  </div>
-                  <button
+                    <button
                       type="button"
                       onClick={handleSubmit}
                       disabled={!selectedCity}
-                      className={`w-full mt-6 mb-[24px] py-3 rounded-lg font-medium text-white transition-all duration-200 ${
+                      className={`w-full mt-5 py-3 rounded-lg font-medium text-white transition-all duration-200 ${
                         selectedCity 
                         ? 'bg-[#3C34F2] hover:bg-[#322BC3]' 
                         : 'bg-gray-300 cursor-not-allowed'
@@ -497,14 +398,34 @@ export default function CitySelector({ reload, check_city }: props) {
               </div>
               <div className="flex flex-col items-center justify-center bg-white w-full pt-[71px] mt-[-40px]">
                 <h5 className="text-[22px] font-semibold text-[#363643]">Não encontrou sua cidade?</h5>
-                <button className="border-2 border-main text-main rounded-full text-[13px] font-bold px-8 py-1">
-                  ACESSA AQUI
+                <button 
+                  onClick={openModal}
+                  className="border-2 border-main text-main rounded-full text-[13px] font-bold px-8 py-1 hover:bg-main hover:text-white transition-colors duration-200 mt-4"
+                >
+                  ACESSE AQUI
                 </button>
               </div>
             </div>
           )}
         </div>
       </div>
+
+      {(showContactForm || isClosing) && (
+        <ContactForm
+          onClose={closeModal}
+          isClosing={isClosing}
+          onSubmit={async (data) => {
+            try {
+              console.log('Dados do formulário:', data);
+              closeModal();
+              toast.success('Dados enviados com sucesso! Entraremos em contato em breve.');
+            } catch (error) {
+              console.error('Erro ao enviar formulário:', error);
+              toast.error('Erro ao enviar dados. Tente novamente.');
+            }
+          }}
+        />
+      )}
     </>
   );
 }
