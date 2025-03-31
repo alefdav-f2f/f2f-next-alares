@@ -139,26 +139,27 @@ export default function CardInternet({ plan }: any) {
             <div className='pt-4'>
                 <div className={`px-2 py-8 min-h-[500px] rounded-br-[50px] border border-gray-300 ${getCardStyles(plan, false, false)}`}>
                     <div className='text-center pt-4 mb-6'>
-                        <div className={`text-4xl ${getCardStyles(plan, true, false)}`}>
-                            <span className={`text-5xl font-semibold ${getCardStyles(plan, true, false)}`}>{plan.title}</span>
+                        <div className={`text-4xl ${plan.alaresPro ? 'pb-3' : ''}  ${getCardStyles(plan, true, false)}`}>
+                            <span className={`${plan.alaresPro ? 'text-3xl' : 'text-5xl'} font-semibold ${getCardStyles(plan, true, false)}`}>{plan.title}</span>
                             {checkIlimitedFone(plan.subtitle) === true ? (
                                 <span>Mega</span>
                             ) : (
                                 <>
-                                {plan.alaresPro ? (                                    
-                                    <span className='ml-2'>{plan.subtitle.split(' ')[0]}</span>                                    
+                                {plan.alaresPro ? (   
+                                                                   
+                                    <span className={`text-3xl ml-2`}>{plan.subtitle.split(' ')[0]} {plan.subtitle.split(' ').slice(1).join(' ').toUpperCase()}</span>                                    
                                 ) : (
                                     <span className='ml-2'>{plan.subtitle}</span>
                                 )}
                                 </>
                             )}
-                            <>
+                            {/* <>
                             {plan.alaresPro ? (
                                 <div className=''>
-                                    <span className=''>{plan.subtitle.split(' ').slice(1).join(' ')}</span>
+                                    <span className={`${plan.alaresPro ? 'text-3xl' : 'text-5xl'} ml-2`}>{plan.subtitle.split(' ').slice(1).join(' ').toUpperCase()}</span>
                                 </div>
                             ) : null}
-                            </>
+                            </> */}
                             <div className='mt-[-15px]'>
                                 {checkIlimitedFone(plan.subtitle) === true ? (
                                     <span className='text-sm'>+ Fone Ilimitado</span>
