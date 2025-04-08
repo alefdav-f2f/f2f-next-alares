@@ -290,7 +290,7 @@ export default function CitySelector({ reload, check_city }: props) {
 
   return (
     <>
-      <div className="w-screen h-screen flex justify-center fixed">
+      <div className="w-screen h-screen flex justify-center fixed overflow-y-scroll">
         <div className="w-full">
           {isLoading ? (
             <div className="flex items-center justify-center h-[300px]">
