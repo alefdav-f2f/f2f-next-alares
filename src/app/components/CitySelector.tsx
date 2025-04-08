@@ -11,7 +11,7 @@ import DataLayerService from "../services/api/datalayer.service";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import ContactForm from "./ContactForm";
 import CityService from "../services/api/city.service";
-import NavigationSelector from "./NavigationSelector";
+import Navigation from "./Navigation";
 import icon from "@/img/icon_selector.png";
 import bg from "@/img/bg-selector.png";
 import undrawPersonalText from "@/img/modal/undraw_personal_text.svg";
@@ -298,7 +298,7 @@ export default function CitySelector({ reload, check_city }: props) {
             </div>
           ) : (
             <div>
-              <NavigationSelector citySelector={true} />
+              <Navigation citySelector={true} />
               <div
                 style={{ backgroundImage: `url(${bg.src})` }}
                 className="bg-cover bg-no-repeat bg-center w-full h-[480px] sm:h-[545px] flex items-end justify-center"
