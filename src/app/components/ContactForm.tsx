@@ -6,6 +6,8 @@ import { InputMask } from '@react-input/mask'
 import RegexService from '@/app/services/validations/regex.service'
 import toast from 'react-hot-toast'
 import Loading from './loadings/Loading'
+import Image from 'next/image'
+import undrawPersonalText from "@/img/modal/undraw_personal_text.svg";
 
 interface ContactFormProps {
     onSubmit: (data: ContactFormData) => void
@@ -76,7 +78,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                 onClick={onClose}
             />
             <div 
-                className={`bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 transform transition-all duration-300 ease-out ${
+                className={`bg-[#F1F1FA] rounded-lg shadow-xl max-w-2xl w-full mx-4 transform transition-all duration-300 ease-out ${
                     isAnimating ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
                 }`}
             >
@@ -90,63 +92,69 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                         </svg>
                     </button>
                 </div>
-                <div className="w-full max-w-2xl mx-auto p-6">
-                    <div className="text-center mb-8">
-                        <h2 className="text-2xl font-bold text-main mb-2">Não encontrou sua cidade?</h2>
-                        <p className="text-gray-600">Não se preocupe, entraremos em contato quando a Alares chegar por aí!</p>
+                <div className="w-full max-w-2xl mx-auto px-4 py-0 sm:px-6 sm:py-6">
+                    <div className="hidden sm:flex justify-center ">
+                        <Image src={undrawPersonalText} alt="Ilustração" width={180} height={126} />
+                    </div>
+                    <div className="flex sm:hidden justify-center ">
+                        <Image src={undrawPersonalText} alt="Ilustração" width={100} height={80} />
+                    </div>
+                    <div className="text-center mb-2 sm:mb-8">
+                        <h2 className="text-[18px] sm:text-[32px] text-[#3C34F2] font-bold">Não encontrou sua cidade?</h2>
+                        <p className="text-gray-600 text-[12px] sm:text-[16px]">Não se preocupe, entraremos em contato quando a Alares chegar por aí!</p>
                     </div>
 
                     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900">
+                                <label className="block sm:mb-2 text-sm font-medium text-gray-900">
                                     Seu nome
                                 </label>
                                 <input
                                     type="text"
                                     {...register('name', { required: true })}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-[50px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="Digite seu nome"
                                 />
                                 {errors.name && <span className="text-red-500 text-xs mt-1">Nome é obrigatório</span>}
                             </div>
 
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900">
+                                <label className="block sm:mb-2 text-sm font-medium text-gray-900">
                                     Seu e-mail
                                 </label>
                                 <input
                                     type="email"
                                     {...register('email', { required: true })}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-[50px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="Digite seu e-mail"
                                 />
                                 {errors.email && <span className="text-red-500 text-xs mt-1">E-mail é obrigatório</span>}
                             </div>
 
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900">
+                                <label className="block sm:mb-2 text-sm font-medium text-gray-900">
                                     Seu Telefone
                                 </label>
                                 <InputMask
                                     mask="(__)_____-____"
                                     replacement="_"
                                     {...register('phone', { required: true })}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-[50px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="(00) 00000-0000"
                                 />
                                 {errors.phone && <span className="text-red-500 text-xs mt-1">Telefone é obrigatório</span>}
                             </div>
 
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900">
+                                <label className="block sm:mb-2 text-sm font-medium text-gray-900">
                                     Seu CEP
                                 </label>
                                 <InputMask
                                     mask="_____-___"
                                     replacement="_"
                                     {...register('cep', { required: true })}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-[50px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="00000-000"
                                 />
                                 {errors.cep && <span className="text-red-500 text-xs mt-1">CEP é obrigatório</span>}
@@ -157,7 +165,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="text-white bg-main hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-3 w-full sm:w-auto"
+                                className="text-white bg-[#3C34F2] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-3 w-full"
                             >
                                 {isLoading ? <Loading /> : 'Enviar'}
                             </button>

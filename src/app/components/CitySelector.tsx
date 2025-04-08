@@ -317,7 +317,7 @@ export default function CitySelector({ reload, check_city }: props) {
                     </span>
                   </div>
 
-                  <form className="w-full max-w-md relative" onSubmit={(e) => e.preventDefault()}>
+                  <form className="w-full max-w-[335px] sm:max-w-[543px] relative" onSubmit={(e) => e.preventDefault()}>
                     <div className="relative">
                       <input
                         type="text"
@@ -388,10 +388,9 @@ export default function CitySelector({ reload, check_city }: props) {
                           <Loading />
                         ) : (
                           <>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 6 25">
+                            <path d="M7 18.6667C7 18.6667 14 12.0327 14 7C14 3.13401 10.866 0 7 0C3.13401 0 0 3.13401 0 7C0 12.0327 7 18.6667 7 18.6667ZM7 10.5C5.067 10.5 3.5 8.933 3.5 7C3.5 5.067 5.067 3.5 7 3.5C8.933 3.5 10.5 5.067 10.5 7C10.5 8.933 8.933 10.5 7 10.5Z" fill="#3C34F2"/>
+                          </svg>
                             Usar minha geolocalização
                           </>
                         )}
