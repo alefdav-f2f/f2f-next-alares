@@ -79,6 +79,11 @@ export default function MainTemplate({ children }: templateProps) {
     }
 
     function clearCookie() {
+
+        if (window.location.pathname.includes("/sobre-a-alares")) {
+            return null;
+        }
+
         deleteCookie('city_name_uf');
         deleteCookie('city_id');
         deleteCookie('city_slug');
@@ -115,6 +120,11 @@ export default function MainTemplate({ children }: templateProps) {
             setSessionID(session_cookie)
         } else {
 
+            if (window.location.pathname.includes("/sobre-a-alares")) {
+                setDisplay(true)
+                return null;
+            }
+
             const request = await EcommerceService.count();
             const new_session = request?.data?.session_id;
             setSessionID(new_session);
@@ -134,6 +144,10 @@ export default function MainTemplate({ children }: templateProps) {
     }
 
     async function checkTV(type: string) {
+
+        if (window.location.pathname.includes("/sobre-a-alares")) {
+            return null;
+        }
 
         const city_id = String(getCookie("city_id"));
         const session_id = getCookie("session_id");

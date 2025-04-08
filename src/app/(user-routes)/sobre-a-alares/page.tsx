@@ -8,14 +8,9 @@ import { IoIosArrowForward } from 'react-icons/io';
 import WhyUs from '@/app/components/WhyUs';
 import TimeLine from '@/app/components/TimeLine';
 import Conquest from '@/app/components/Conquest';
-import Head from 'next/head';
 
 
 export default function SobreAAlares() {
-
-    React.useEffect(() => {
-
-    }, [])
 
     return (
         <>

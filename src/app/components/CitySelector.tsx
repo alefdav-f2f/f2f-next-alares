@@ -11,9 +11,13 @@ import DataLayerService from "../services/api/datalayer.service";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import ContactForm from "./ContactForm";
 import CityService from "../services/api/city.service";
-
+import NavigationSelector from "./NavigationSelector";
 import icon from "@/img/icon_selector.png";
 import bg from "@/img/bg-selector.png";
+import undrawPersonalText from "@/img/modal/undraw_personal_text.svg";
+import blogIndoAlem from "@/img/modal/blog_indo_alem.svg";
+import alaresEmpresas from "@/img/modal/alares_empresas.svg";
+import Image from "next/image";
 
 interface props {
   reload: boolean;
@@ -24,6 +28,7 @@ export default function CitySelector({ reload, check_city }: props) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+
   const [stateList, setState] = React.useState<StateProps[]>([]);
   const [cityList, setCity] = React.useState<CityProps[]>([]);
   const [filteredList, setFilteredCity] = React.useState<CityProps[]>([]);
@@ -38,6 +43,9 @@ export default function CitySelector({ reload, check_city }: props) {
   const [showContactForm, setShowContactForm] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [isAnimating, setIsAnimating] = React.useState(false);
+  const [showThankYouModal, setShowThankYouModal] = React.useState(false);
+  const [isThankYouModalClosing, setIsThankYouModalClosing] = React.useState(false);
+  const [formData, setFormData] = React.useState<any>(null);
 
   function sendDataLayer(dataCity: any) {
     const data = {
@@ -251,6 +259,14 @@ export default function CitySelector({ reload, check_city }: props) {
     }, 300);
   };
 
+  const closeThankYouModal = () => {
+    setIsThankYouModalClosing(true);
+    setTimeout(() => {
+      setShowThankYouModal(false);
+      setIsThankYouModalClosing(false);
+    }, 300);
+  };
+
   React.useEffect(() => {
     const queryString = window.location.search.substring(1);
     const params = new URLSearchParams(queryString);
@@ -282,9 +298,10 @@ export default function CitySelector({ reload, check_city }: props) {
             </div>
           ) : (
             <div>
+              <NavigationSelector citySelector={true} />
               <div
                 style={{ backgroundImage: `url(${bg.src})` }}
-                className="bg-cover bg-no-repeat bg-center w-full h-[545px] flex items-end justify-center"
+                className="bg-cover bg-no-repeat bg-center w-full h-[480px] sm:h-[545px] flex items-end justify-center"
               >
                 <div className="flex flex-col items-center bg-[#F1F1FA] rounded-lg p-4 w-[90%] sm:w-[739px] mx-auto">
                   <div className="mb-4 flex justify-center">
@@ -404,6 +421,9 @@ export default function CitySelector({ reload, check_city }: props) {
                 >
                   ACESSE AQUI
                 </button>
+              </div> 
+              <div className="flex flex-col items-center justify-center bg-main w-full border-t-4 border-sub mt-[30px] py-10 sm:py-12">
+                <Logo className="w-28 sm:w-36 sm:mr-8" color="white" />
               </div>
             </div>
           )}
@@ -417,14 +437,103 @@ export default function CitySelector({ reload, check_city }: props) {
           onSubmit={async (data) => {
             try {
               console.log('Dados do formulário:', data);
+              setFormData(data);
               closeModal();
-              toast.success('Dados enviados com sucesso! Entraremos em contato em breve.');
+              
+              setTimeout(() => {
+                setShowThankYouModal(true);
+              }, 350);
+              
             } catch (error) {
               console.error('Erro ao enviar formulário:', error);
               toast.error('Erro ao enviar dados. Tente novamente.');
             }
           }}
         />
+      )}
+
+      {(showThankYouModal || isThankYouModalClosing) && (
+        <div 
+          className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${
+            !isThankYouModalClosing ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-[30px] transition-opacity duration-300"
+            onClick={closeThankYouModal}
+          />
+          <div 
+            className={`bg-[#F1F1FA] rounded-[10px] shadow-xl max-w-[739px] w-full mx-4 transform transition-all duration-300 ease-out ${
+              !isThankYouModalClosing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+            }`}
+          >
+            <div className="flex justify-end p-2">
+              <button
+                onClick={closeThankYouModal}
+                className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="w-full max-w-[739px] mx-auto p-6">
+              <div className="text-center">
+                <div className="flex justify-center">
+                  <Image src={undrawPersonalText} alt="Ilustração" width={180} height={126} />
+                </div>
+                <h2 className="text-[32px] font-bold text-[#3C34F2]">Recebemos seus dados!</h2>
+                <p className="text-[#363643] text-[15px] leading-[1.53em] mb-4">
+                  Não se preocupe, entraremos em contato quando a Alares chegar por aí!
+                </p>
+                
+                
+
+                <h3 className="text-[16px] font-semibold text-[#222222] mb-6">
+                  Conteúdos que podem te interessar:
+                </h3>
+
+                <div className="flex flex-col sm:flex-row justify-center gap-10">
+                  {/* Card Blog Indo Além */}
+                  <div className="flex flex-row sm:flex-col items-center gap-4">
+                    <div className="relative w-[187px] h-[140px] sm:w-[214px] sm:h-[150px] rounded-[6.7px] overflow-hidden mb-4">
+                      <Image 
+                        src={blogIndoAlem} 
+                        alt="Blog Indo Além" 
+                        layout="fill" 
+                        objectFit="cover"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-[18px] sm:text-[20px] text-[#363643] mb-4 text-left">Blog <b>Indo Além</b></h4>
+                      <button onClick={() => window.open('https://www.alaresinternet.com.br/indoalem/', '_blank')} className="bg-[#5A53F7] w-[144px] text-white text-[13px] font-bold rounded-full px-8 py-2 hover:bg-[#4A45E5] transition-colors duration-200">
+                        SAIBA MAIS
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Card Alares Empresas */}
+                  <div className="flex flex-row sm:flex-col items-center gap-4">
+                    <div className="relative w-[187px] h-[140px] sm:w-[214px] sm:h-[150px] rounded-[6.7px] overflow-hidden mb-4">
+                      <Image 
+                        src={alaresEmpresas} 
+                        alt="Alares Empresas" 
+                        layout="fill" 
+                        objectFit="cover"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-[18px] sm:text-[20px] text-[#363643] mb-4 text-left"><b>Alares</b> empresas</h4>
+                      <button onClick={() => window.open('https://empresas.alaresinternet.com.br/', '_blank')} className="bg-[#5A53F7] w-[144px] text-white text-[13px] font-bold rounded-full px-8 py-2 hover:bg-[#4A45E5] transition-colors duration-200">
+                        SAIBA MAIS
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
