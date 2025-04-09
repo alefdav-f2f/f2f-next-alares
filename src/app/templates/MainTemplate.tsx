@@ -2,6 +2,7 @@
 import React from 'react'
 import { ButtonWhatsapp } from '../components/ButtonWhatsapp'
 import Navigation from '../components/Navigation'
+import NavigationSelector from '../components/NavigationSelector'
 import { deleteCookie, getCookie, setCookie } from 'cookies-next'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import axiosInterceptorInstance from '../api/axiosInterceptor'
@@ -40,6 +41,10 @@ export default function MainTemplate({ children }: templateProps) {
     const showNavigation = navigationZustand((state: any) => state.show);
     const activeHasTV = hasTV((state: any) => state.active);
     const inactiveHasTV = hasTV((state: any) => state.inactive);
+    const [pathnameWindow, setPathnameWindow] = React.useState('');
+    
+    const pathWithoutCity = ["/sobre-a-alares", "/trabalhe-conosco", "/alares-2a-via-de-boleto", "/autoatendimento"];
+    
 
     async function checkCity() {
 
@@ -80,7 +85,7 @@ export default function MainTemplate({ children }: templateProps) {
 
     function clearCookie() {
 
-        if (window.location.pathname.includes("/sobre-a-alares")) {
+        if (pathWithoutCity.includes(window.location.pathname)) {
             return null;
         }
 
@@ -115,16 +120,16 @@ export default function MainTemplate({ children }: templateProps) {
 
     async function checkSession() {
         const session_cookie = getCookie('session_id');
+        setPathnameWindow(window.location.pathname)
+
+        if (pathWithoutCity.includes(window.location.pathname)) {
+            setDisplay(true)
+            return null;
+        }
 
         if (session_cookie) {
             setSessionID(session_cookie)
         } else {
-
-            if (window.location.pathname.includes("/sobre-a-alares")) {
-                setDisplay(true)
-                return null;
-            }
-
             const request = await EcommerceService.count();
             const new_session = request?.data?.session_id;
             setSessionID(new_session);
@@ -134,7 +139,7 @@ export default function MainTemplate({ children }: templateProps) {
 
     //Esconde o botão do whatsapp caso esteja no /contrate-ja
     function checkHide() {
-        if (['/contrate-ja', '/contrate-ja-card', '/contrate-ja-sva'].includes(pathname)) {
+        if (pathWithoutCity.includes(window.location.pathname)) {
             hideWhatsapp();
             hideNavigation();
         } else {
@@ -145,7 +150,7 @@ export default function MainTemplate({ children }: templateProps) {
 
     async function checkTV(type: string) {
 
-        if (window.location.pathname.includes("/sobre-a-alares")) {
+        if (pathWithoutCity.includes(window.location.pathname)) {
             return null;
         }
 
@@ -185,7 +190,7 @@ export default function MainTemplate({ children }: templateProps) {
                     )}
                 </div>
                 <div>
-                    <Navigation />
+                    {pathWithoutCity.includes(pathnameWindow) ? <NavigationSelector /> : <Navigation />}
                 </div>
                 {display ? (
                     <div>

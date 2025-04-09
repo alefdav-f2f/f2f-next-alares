@@ -128,7 +128,7 @@ export default function page() {
     async function getCategory() {
 
         const params = {
-            city_id: getCookie('city_id')
+            city_id: getCookie('city_id') || 742
         }
 
         const request = await axiosInterceptorInstance.get('/faq/get-all/category-questions', { params });
