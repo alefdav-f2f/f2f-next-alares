@@ -293,8 +293,8 @@ export default function Navigation() {
 
             {SideBar()}
 
-            
-              <div className="h-[40px] flex justify-end bg-[#F1F1FA] p-2">
+            {console.log(cityName)}
+              <div className={`h-[40px] flex justify-end bg-[#F1F1FA] p-2 ${cityName ? 'block' : 'hidden'}`}>
                 <div className="flex items-center">
                   <div className="mr-4 flex items-center text-main">
                     <IoLocationSharp className="mr-1" />
