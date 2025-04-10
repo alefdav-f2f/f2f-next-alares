@@ -140,10 +140,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                                     mask="(__)_____-____"
                                     replacement="_"
                                     {...register('phone', { required: true })}
+                                    onKeyPress={(e) => {
+                                        const charCode = e.which ? e.which : e.keyCode;
+                                        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                            e.preventDefault();
+                                        }
+                                    }}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-[50px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="(00) 00000-0000"
                                 />
-                                {errors.phone && <span className="text-red-500 text-xs mt-1">Telefone é obrigatório</span>}
+                                {errors.phone && errors.phone.type === 'pattern' && 
+                                    <span className="text-red-500 text-xs mt-1">{errors.phone.message}</span>}
                             </div>
 
                             <div>
@@ -154,6 +161,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                                     mask="_____-___"
                                     replacement="_"
                                     {...register('cep', { required: true })}
+                                    onKeyPress={(e) => {
+                                        const charCode = e.which ? e.which : e.keyCode;
+                                        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                            e.preventDefault();
+                                        }
+                                    }}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-[50px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="00000-000"
                                 />

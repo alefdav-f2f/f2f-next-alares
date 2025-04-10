@@ -39,7 +39,12 @@ export default function Banner({ type }: bannerProps) {
 
     async function getBanner() {
 
-        const city_id = getCookie('city_id') || 742;
+        const city_id = getCookie('city_id');
+
+        if (!city_id) {
+            setIsLoading(false);
+            return;
+        }
 
         try {
             const request: any = await axiosInterceptorInstance.get(`/banner/get-banner-by-city/${city_id}`, {
