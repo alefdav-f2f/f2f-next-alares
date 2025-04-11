@@ -297,7 +297,7 @@ export default function CitySelector({ reload, check_city }: props) {
               <NavigationSelector />
               <div
                 style={{ backgroundImage: `url(${bg.src})` }}
-                className="bg-cover bg-no-repeat bg-center w-full h-[480px] sm:h-[545px] flex items-end justify-center"
+                className="bg-cover bg-no-repeat bg-center w-full h-[480px] sm:h-[500px] flex items-center justify-center"
               >
                 <div className="flex flex-col items-center bg-[#F1F1FA] rounded-lg p-4 w-[90%] sm:w-[739px] mx-auto">
                   <div className="mb-4 flex justify-center">
@@ -408,7 +408,7 @@ export default function CitySelector({ reload, check_city }: props) {
                   </form>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center bg-white w-full pt-[71px] mt-[-40px]">
+              <div className="flex flex-col items-center justify-center bg-white w-full pt-[80px] mt-[-80px]">
                 <h5 className="text-[22px] font-semibold text-[#363643]">Não encontrou sua cidade?</h5>
                 <button 
                   onClick={openModal}
