@@ -408,7 +408,7 @@ export default function CitySelector({ reload, check_city }: props) {
                   </form>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center bg-white w-full pt-[80px] mt-[-80px]">
+              <div className="flex flex-col items-center justify-center bg-white w-full pt-[71px] mt-[-40px] sm:pt-[80px] sm:mt-[-80px]">
                 <h5 className="text-[22px] font-semibold text-[#363643]">Não encontrou sua cidade?</h5>
                 <button 
                   onClick={openModal}
