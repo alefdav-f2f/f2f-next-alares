@@ -12,11 +12,12 @@ export default function Footer() {
     const searchParams = useSearchParams();
     const [socialList, setSocialList] = React.useState<any[]>([]);
 
-
+    
     function getParams() {
         const params = new URLSearchParams(Array.from(searchParams.entries()));
         return `?${params}`;
     }
+    console.log(getParams());
 
     async function getSocialMedia() {
 
@@ -33,7 +34,7 @@ export default function Footer() {
     }, [])
 
     return (
-        <div className='min-h-[350px] bg-main pt-6 border-t-4 border-sub flex-row justify-between'>
+        <div className={`${getParams().includes('plano=') ? 'hidden sm:block' : ''} min-h-[350px] bg-main pt-6 border-t-4 border-sub flex-row justify-between`}>
             <div className='flex justify-center mb-10'>
                 <Image
                     alt="Logo Alares Internet"

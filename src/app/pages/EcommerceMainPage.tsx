@@ -48,7 +48,7 @@ import {
 } from 'react-icons/ri';
 import Loading from '../components/loadings/Loading';
 import ModalPlans from '../components/ModalPlans';
-
+import Logo from "../components/Logo/Logo";
 import {
   Accordion,
   AccordionContent,
@@ -135,7 +135,7 @@ export default function EcommerceMainPage({ template }: props) {
 
   return (
     <div id='initial_scroll' className='pb-10 sm:pt-10'>
-      <nav className='hidden sm:block h-[90px] sm:h-[160px] max-w-screen absolute top-0 right-0'>
+      <nav className='hidden h-[90px] sm:h-[160px] max-w-screen absolute top-0 right-0'>
         <div className='flex justify-end items-center sm:relative h-[90px] w-[100%]'>
           <div className='flex items-center justify-end xl:justify-center sm:w-[1200px] w-full px-5'>
             <div className='hidden lg:flex pt-10 mb-10'>
@@ -256,7 +256,7 @@ export default function EcommerceMainPage({ template }: props) {
         </div>
       </nav>
 
-      <div className='lg:hidden flex justify-center pt-10 mb-10'>
+      <div className='hidden justify-center pt-10 mb-10'>
         <div>
           <div className='flex mb-2'>
             <div className='flex items-center'>
@@ -320,7 +320,12 @@ export default function EcommerceMainPage({ template }: props) {
       </div>
 
       {[10, 20].includes(step) ? (
-        <div className='text-center mb-4 p-2'>
+        <div>
+          <div className="flex sm:hidden flex-col items-center justify-center bg-main w-full border-b-4 mb-5 border-sub py-10 sm:py-12">
+            <Logo className="w-28 sm:w-36" color="white" />
+          </div>
+<div className='text-center mb-4 p-2'>
+          
           <span className='sm:text-5xl text-2xl font-bold text-main'>
             Contrate já
           </span>
@@ -339,6 +344,9 @@ export default function EcommerceMainPage({ template }: props) {
             </>
           ) : null}
         </div>
+        </div>
+
+        
       ) : null}
 
       {isLoading ? (
