@@ -83,15 +83,31 @@ export default function CitySelector({ reload, check_city }: props) {
     } else {
       setOpen(true);
       setLoadingCity(true);
-      const filteredCities = await CityService.searchCities(value, cityList);
-      setFilteredCity(filteredCities);
+      
+      // Verificar se o valor é uma sigla de estado (2 letras)
+      const isStateCode = /^[A-Z]{2}$/i.test(value);
+      
+      if (isStateCode) {
+        // Se for sigla de estado, filtra todas as cidades desse estado
+        const upperValue = value.toUpperCase();
+        
+        const citiesByState = cityList.filter(city => 
+          city.uf.toUpperCase() === upperValue
+        );
+        setFilteredCity(citiesByState);
+      } else {
+        // Comportamento normal de busca
+        const filteredCities = await CityService.searchCities(value, cityList);
+        setFilteredCity(filteredCities);
+      }
+      
       setLoadingCity(false);
     }
   }
 
   function handleCitySelect(city: CityProps) {
     setSelectedCity(city);
-    setInputValue(city.name);
+    setInputValue(`${city.name} - ${city.uf}`);
     setOpen(false);
   }
 
@@ -345,7 +361,7 @@ export default function CitySelector({ reload, check_city }: props) {
                                         onClick={() => handleCitySelect(city)}
                                         className={`pl-2 py-1 hover:bg-sub hover:cursor-pointer`}
                                       >
-                                        <span>{city.name}</span>
+                                        <span>{city.name} - {city.uf}</span>
                                       </div>
                                     ) : null}
                                   </div>
@@ -362,7 +378,7 @@ export default function CitySelector({ reload, check_city }: props) {
                                       onClick={() => handleCitySelect(city)}
                                       className={`pl-2 py-1 hover:bg-sub hover:cursor-pointer`}
                                     >
-                                      <span>{city.name}</span>
+                                      <span>{city.name} - {city.uf}</span>
                                     </div>
                                   ) : null}
                                 </div>
