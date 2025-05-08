@@ -414,16 +414,16 @@ export default function Navigation() {
                           sendDataLayer("Seletor de Cidade");
                         }}
                       >
-                        {/* <DrawerTrigger asChild>
+                        <DrawerTrigger asChild>
                           <div className="text-white hover:cursor-pointer rounded font-medium text-sm flex items-center py-1.5 px-4 border-main  bg-main hover:bg-gray-100 hover:text-blue-700 focus:z-10">
                             <span>{cityName}</span>
                           </div>
-                        </DrawerTrigger> */}
-                        <button onClick={() => {clearCookie()}} >
-                            <div className="text-white hover:cursor-pointer rounded font-medium text-sm flex items-center py-1.5 px-4 border-main  bg-main hover:bg-gray-100 hover:text-blue-700 focus:z-10">
+                        </DrawerTrigger>
+                        {/* <button onClick={() => {clearCookie()}} > */}
+                            {/* <div className="text-white hover:cursor-pointer rounded font-medium text-sm flex items-center py-1.5 px-4 border-main  bg-main hover:bg-gray-100 hover:text-blue-700 focus:z-10">
                                 <span>{cityName}</span>
-                            </div>
-                        </button>
+                            </div> */}
+                        {/* </button> */}
                         {cityName?.length > 0 ? (
                           <>
                             <div className="flex justify-end pr-3">
@@ -538,7 +538,7 @@ export default function Navigation() {
         </div>
         <DrawerContent className="bg-main">
           <div className="m-0 w-full max-w-sm h-[90vh]">
-            <CitySelector reload={true} check_city={false} />
+            <CitySelector reload={true} check_city={false} isDrawer={true} />
           </div>
         </DrawerContent>
       </Drawer>

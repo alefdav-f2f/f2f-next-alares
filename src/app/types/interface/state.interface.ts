@@ -12,4 +12,5 @@ export interface CityProps {
     name: string
     slug: string
     value: string
+    uf: string
 }

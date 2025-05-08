@@ -22,9 +22,10 @@ import Image from "next/image";
 interface props {
   reload: boolean;
   check_city: boolean;
+  isDrawer?: boolean;
 }
 
-export default function CitySelector({ reload, check_city }: props) {
+export default function CitySelector({ reload, check_city, isDrawer = false }: props) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -46,6 +47,7 @@ export default function CitySelector({ reload, check_city }: props) {
   const [showThankYouModal, setShowThankYouModal] = React.useState(false);
   const [isThankYouModalClosing, setIsThankYouModalClosing] = React.useState(false);
   const [formData, setFormData] = React.useState<any>(null);
+  const [modalSource, setModalSource] = React.useState<'geolocation' | 'manual' | null>(null);
 
   function sendDataLayer(dataCity: any) {
     const data = {
@@ -221,6 +223,7 @@ export default function CitySelector({ reload, check_city }: props) {
           const cityName = await getCityFromCoordinates(latitude, longitude);
 
           if (!cityName) {
+            setModalSource('geolocation');
             setShowContactForm(true);
             setLoadingCity(false);
             return;
@@ -237,10 +240,12 @@ export default function CitySelector({ reload, check_city }: props) {
             handleCitySelect(matchingCity);
             toast.success(`Encontramos ${matchingCity.name} próximo a você!`);
           } else {
+            setModalSource('geolocation');
             setShowContactForm(true);
           }
         } catch (error) {
           console.error("Erro ao buscar cidades:", error);
+          setModalSource('geolocation');
           setShowContactForm(true);
         } finally {
           setLoadingCity(false);
@@ -259,6 +264,7 @@ export default function CitySelector({ reload, check_city }: props) {
   }
 
   const openModal = () => {
+    setModalSource('manual');
     setShowContactForm(true);
     setIsClosing(false);
   };
@@ -268,6 +274,7 @@ export default function CitySelector({ reload, check_city }: props) {
     setTimeout(() => {
       setShowContactForm(false);
       setIsClosing(false);
+      setModalSource(null);
     }, 300);
   };
 
@@ -300,6 +307,118 @@ export default function CitySelector({ reload, check_city }: props) {
     loadAllCities();
   }, []);
 
+  // if (isDrawer) {
+  //   return (
+  //     <div className="w-full h-full flex flex-col">
+  //       <div className="flex flex-col items-center bg-[#F1F1FA] rounded-lg p-4 w-full">
+  //         <div className="mb-4 flex justify-center">
+  //           <img src={icon.src} alt="icon" className="w-8 h-8" />
+  //         </div>
+
+  //         <div className="text-center mb-4">
+  //           <span className="text-[#3C34F2] text-[20px] font-bold">
+  //             Encontre sua cidade
+  //           </span>
+  //         </div>
+
+  //         <form className="w-full relative" onSubmit={(e) => e.preventDefault()}>
+  //           <div className="relative">
+  //             <input
+  //               type="text"
+  //               id="inputCity"
+  //               onFocus={() => setOpen(true)}
+  //               onClick={() => setOpen(true)}
+  //               onChange={filterCity}
+  //               placeholder="Digite sua cidade"
+  //               value={inputValue}
+  //               className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:border-[#3C34F2] text-sm"
+  //             />
+  //             <div className="absolute inset-y-0 left-3 flex items-center pr-3">
+  //               <svg className="w-4 h-4 text-gray-400" fill="none" stroke="#5A53F7" viewBox="0 0 24 24">
+  //                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  //               </svg>
+  //             </div>
+  //           </div>
+
+  //           {open && (
+  //             <div className="absolute left-0 right-0 mt-1 rounded-lg bg-white shadow-lg max-h-[200px] overflow-auto z-50">
+  //               <div>
+  //                 <div className="">
+  //                   {filteredList?.map(
+  //                     (city: any, index: number) => {
+  //                       return (
+  //                         <div key={index}>
+  //                           {city.onTop === true ? (
+  //                             <div
+  //                               onClick={() => handleCitySelect(city)}
+  //                               className={`pl-2 py-1 hover:bg-sub hover:cursor-pointer text-sm`}
+  //                             >
+  //                               <span>{city.name} - {city.uf}</span>
+  //                             </div>
+  //                           ) : null}
+  //                         </div>
+  //                       );
+  //                     }
+  //                   )}
+  //                 </div>
+  //                 {filteredList?.map(
+  //                   (city: any, index: number) => {
+  //                     return (
+  //                       <div key={index}>
+  //                         {city.onTop === false ? (
+  //                           <div
+  //                             onClick={() => handleCitySelect(city)}
+  //                             className={`pl-2 py-1 hover:bg-sub hover:cursor-pointer text-sm`}
+  //                           >
+  //                             <span>{city.name} - {city.uf}</span>
+  //                           </div>
+  //                         ) : null}
+  //                       </div>
+  //                     );
+  //                   }
+  //                 )}
+  //               </div>
+  //             </div>
+  //           )}
+
+  //           <div className="mt-3 text-center">
+  //             <p className="text-[#848490] text-[12px] font-regular">ou, se preferir</p>
+  //             <button 
+  //               onClick={handleGeolocation}
+  //               disabled={loadingCity}
+  //               className="underline mt-1 text-[#3C34F2] font-bold flex items-center justify-center gap-2 mx-auto hover:text-[#322BC3] transition-colors duration-200 text-sm"
+  //             >
+  //               {loadingCity ? (
+  //                 <Loading />
+  //               ) : (
+  //                 <>
+  //                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 6 25">
+  //                     <path d="M7 18.6667C7 18.6667 14 12.0327 14 7C14 3.13401 10.866 0 7 0C3.13401 0 0 3.13401 0 7C0 12.0327 7 18.6667 7 18.6667ZM7 10.5C5.067 10.5 3.5 8.933 3.5 7C3.5 5.067 5.067 3.5 7 3.5C8.933 3.5 10.5 5.067 10.5 7C10.5 8.933 8.933 10.5 7 10.5Z" fill="#3C34F2"/>
+  //                   </svg>
+  //                   Usar minha geolocalização
+  //                 </>
+  //               )}
+  //             </button>
+  //           </div>
+
+  //           <button
+  //             type="button"
+  //             onClick={handleSubmit}
+  //             disabled={!selectedCity}
+  //             className={`w-full mt-3 py-2 rounded-lg font-medium text-white transition-all duration-200 text-sm ${
+  //               selectedCity 
+  //               ? 'bg-[#3C34F2] hover:bg-[#322BC3]' 
+  //               : 'bg-gray-300 cursor-not-allowed'
+  //             }`}
+  //           >
+  //             Continuar
+  //           </button>
+  //         </form>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   return (
     <>
       <div className="w-screen h-screen flex justify-center fixed overflow-y-scroll">
@@ -310,7 +429,7 @@ export default function CitySelector({ reload, check_city }: props) {
             </div>
           ) : (
             <div>
-              <NavigationSelector />
+              {!isDrawer ? <NavigationSelector /> : ''}
               <div
                 style={{ backgroundImage: `url(${bg.src})` }}
                 className="bg-cover bg-no-repeat bg-center w-full h-[480px] sm:h-[500px] flex items-center justify-center"
@@ -424,7 +543,8 @@ export default function CitySelector({ reload, check_city }: props) {
                   </form>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center bg-white w-full pt-[71px] mt-[-40px] sm:pt-[80px] sm:mt-[-80px]">
+
+              <div className={`flex flex-col items-center justify-center bg-white w-full pt-[71px] mt-[-40px] sm:pt-[80px] sm:mt-[-80px] ${isDrawer ? 'pb-10' : ''}`}>
                 <h5 className="text-[22px] font-semibold text-[#363643]">Não encontrou sua cidade?</h5>
                 <button 
                   onClick={openModal}
@@ -433,7 +553,8 @@ export default function CitySelector({ reload, check_city }: props) {
                   ACESSE AQUI
                 </button>
               </div> 
-              <div className="flex flex-col items-center justify-center bg-main w-full border-t-4 border-sub mt-[30px] py-10 sm:py-12">
+              {isDrawer ? <div className="mt-10" /> : ''}
+              <div className={`flex flex-col items-center justify-center bg-main w-full border-t-4 border-sub mt-[30px] py-10 sm:py-12 ${isDrawer ? 'm-0' : ''}`}>
                 <Logo className="w-28 sm:w-36" color="white" />
               </div>
             </div>
@@ -445,6 +566,7 @@ export default function CitySelector({ reload, check_city }: props) {
         <ContactForm
           onClose={closeModal}
           isClosing={isClosing}
+          modalSource={modalSource}
           onSubmit={async (data) => {
             try {
               console.log('Dados do formulário:', data);

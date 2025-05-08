@@ -13,6 +13,7 @@ interface ContactFormProps {
     onSubmit: (data: ContactFormData) => void
     onClose?: () => void
     isClosing?: boolean
+    modalSource?: 'geolocation' | 'manual' | null
 }
 
 interface ContactFormData {
@@ -22,7 +23,7 @@ interface ContactFormData {
     cep: string
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing = false }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing = false, modalSource = null }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>()
     const [isLoading, setLoading] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
@@ -100,8 +101,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                         <Image src={undrawPersonalText} alt="Ilustração" width={100} height={80} />
                     </div>
                     <div className="text-center mb-2 sm:mb-8">
-                        <h2 className="text-[18px] sm:text-[32px] text-[#3C34F2] font-bold">Não encontrou sua cidade?</h2>
-                        <p className="text-gray-600 text-[12px] sm:text-[16px]">Não se preocupe, entraremos em contato quando a Alares chegar por aí!</p>
+                        <h2 className="text-[18px] sm:text-[32px] text-[#3C34F2] font-bold">
+                            {modalSource === 'geolocation' 
+                                ? "Cidade não localizada" 
+                                : "Não encontrou sua cidade?"}
+                        </h2>
+                        <p className="text-gray-600 text-[12px] sm:text-[16px]">
+                            {modalSource === 'geolocation'
+                                ? "Ainda não temos cobertura na sua região. Deixe seu contato e avisaremos quando a Alares chegar por aí!"
+                                : "Não se preocupe, entraremos em contato quando a Alares chegar por aí!"}
+                        </p>
                     </div>
 
                     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
