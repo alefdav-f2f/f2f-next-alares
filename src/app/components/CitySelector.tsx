@@ -120,6 +120,9 @@ export default function CitySelector({ reload, check_city, isDrawer = false }: p
   }
 
   async function setCookieFunction(value: string) {
+    // Salvar o pathname atual antes de limpar os cookies
+    const currentPath = pathname.startsWith('/home') ? '/home' : pathname;
+    
     clearCookie();
 
     let path = "";
@@ -127,15 +130,18 @@ export default function CitySelector({ reload, check_city, isDrawer = false }: p
     const pathname_cookie = String(getCookie("pathname"));
     const return_path = getCookie("return_path");
 
-    if (pathname_cookie === "undefined") {
-      path = "/home";
-
+    // Use o path atual como fallback em vez de forçar /home
+    if (pathname_cookie === "undefined" || !pathname_cookie) {
+      // Primeiro verifica se há um return_path definido
       if (return_path) {
         path = String(return_path);
         deleteCookie("return_path");
+      } else {
+        // Usa o caminho atual se não for a página raiz
+        path = currentPath !== '/' ? currentPath : '/home';
       }
     } else {
-      path = pathname_cookie ?? pathname;
+      path = pathname_cookie;
     }
 
     const redirect = `${path}?city=${value}${
@@ -173,6 +179,11 @@ export default function CitySelector({ reload, check_city, isDrawer = false }: p
   }
 
   function clearCookie() {
+    // Salvar o pathname atual no cookie antes de limpar os outros cookies
+    if (pathname !== '/') {
+      setCookie("pathname", pathname);
+    }
+    
     deleteCookie("city_name_uf");
     deleteCookie("city_id");
     deleteCookie("city_slug");

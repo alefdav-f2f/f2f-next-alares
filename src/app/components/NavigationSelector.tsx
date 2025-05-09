@@ -2,7 +2,7 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 import { AiOutlineMenu } from "react-icons/ai";
-import { deleteCookie, getCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
@@ -43,6 +43,11 @@ export default function Navigation() {
   const isContrateJaPage = isContratePage(pathname);
 
   function clearCookie() {
+    // Salvar o pathname atual no cookie antes de limpar os outros cookies
+    if (pathname !== '/') {
+      setCookie("pathname", pathname);
+    }
+    
     deleteCookie("city_name_uf");
     deleteCookie("city_id");
     deleteCookie("city_slug");
