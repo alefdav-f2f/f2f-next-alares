@@ -554,7 +554,7 @@ export default function CitySelector({ reload, check_city, isDrawer = false }: p
                 </button>
               </div> 
               {isDrawer ? <div className="mt-10" /> : ''}
-              <div className={`flex flex-col items-center justify-center bg-main w-full border-t-4 border-sub mt-[30px] py-10 sm:py-12 ${isDrawer ? 'm-0' : ''}`}>
+              <div className={`flex flex-col items-center justify-center bg-main w-full border-t-4 border-sub mt-[30px] py-10 sm:py-12 ${isDrawer ? 'hidden' : ''}`}>
                 <Logo className="w-28 sm:w-36" color="white" />
               </div>
             </div>
