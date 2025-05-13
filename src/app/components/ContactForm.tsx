@@ -113,7 +113,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                         </p>
                     </div>
 
-                    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+                    <form onSubmit={handleSubmit(handleFormSubmit)} className="md:space-y-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label className="block sm:mb-2 text-sm font-medium text-gray-900">
@@ -193,7 +193,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onClose, isClosing 
                             </button>
                         </div>
 
-                        <p className="text-xs text-gray-500 text-center mt-4">
+                        <p className="text-xs text-gray-500 text-center py-3 md:py-0 md:mt-4">
                             Ao enviar seus dados, você aceitará receber novidades sobre planos
                             Alares, disponíveis na sua região.
                         </p>
