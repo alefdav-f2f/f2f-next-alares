@@ -121,7 +121,7 @@ export default function Plan2({ plan_type }: any) {
               </h2>
               <div
                 onClick={() => router.push(`/planos-de-internet`)}
-                className={`flex text-sm font-semibold hover:cursor-pointer px-8 sm:py-4 max-[450px]:h-12 text-[#b8b8b8] border-[#b8b8b8] border-2 rounded-full bg-transparent items-center`}
+                className={`flex text-sm font-semibold hover:cursor-pointer p-2 sm:px-8 sm:py-4 max-[450px]:h-12 text-[#b8b8b8] border-[#b8b8b8] border-b-2 bg-transparent items-center`}
               >
                 <span className="text-xs">VER MAIS</span>
               </div>
@@ -158,7 +158,7 @@ export default function Plan2({ plan_type }: any) {
                     return (
                       <SwiperSlide
                         key={index}
-                        className="pt-2b"
+                        className="pt-2b py-3"
                       >
                         <CardHomeMobile offer={offer} />
                       </SwiperSlide>
