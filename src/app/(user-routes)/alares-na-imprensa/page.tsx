@@ -80,7 +80,7 @@ export default function SalaImprensa() {
       date: '2025-04-25T11:17:40+00:00',
       acf_fields: {
         banner_principal:
-          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/241126-Loja-modelo-RN.jpeg',
+          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/05/250425-Lancamento-Disney.jpg',
       },
     },
     {
@@ -92,7 +92,7 @@ export default function SalaImprensa() {
       date: '2025-05-09T11:17:40+00:00',
       acf_fields: {
         banner_principal:
-          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/04/Denis-Ferreira-2024.jpg.webp',
+          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/05/250509-Uso-de-IA-na-operacao.jpg',
       },
     },
     {
@@ -104,7 +104,7 @@ export default function SalaImprensa() {
       date: '2025-05-12T11:17:40+00:00',
       acf_fields: {
         banner_principal:
-          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/05/alejandro-contreras-alares.jpg',
+          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/05/250512-Solucoes-Inteligentes.jpeg',
       },
     },
     {
@@ -116,7 +116,7 @@ export default function SalaImprensa() {
       date: '2025-05-14T11:17:40+00:00',
       acf_fields: {
         banner_principal:
-          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/02/241126-Loja-modelo-RN.jpeg',
+          'https://www.alaresinternet.com.br/indoalem/wp-content/uploads/2025/05/250514-Resultados-1T25.jpg',
       },
     },
     {
