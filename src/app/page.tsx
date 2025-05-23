@@ -1,96 +1,63 @@
 'use client'
 import React from 'react'
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { CityProps, StateProps } from './types/interface/state.interface';
+import { usePrefetchCriticalData, queryKeys } from './hooks/useQueries';
+import { useQueryClient } from '@tanstack/react-query';
 import axiosInterceptorInstance from './api/axiosInterceptor';
 import CitySelector from './components/CitySelector';
 
-
 export default function Main() {
-
   const searchParams = useSearchParams()
-  const pathname = usePathname()
   const router = useRouter();
-  const [stateList, setState] = React.useState<StateProps[]>([])
-  const [cityList, setCity] = React.useState<CityProps[]>([])
+  const queryClient = useQueryClient();
   const [isLoading, setLoading] = React.useState(false);
-  const [loadingState, setLoadingState] = React.useState(false);
-  const [loadingCity, setLoadingCity] = React.useState(false);
   const [goal, setGoal] = React.useState(350)
-
+  
+  // Usar o hook de prefetch para dados críticos
+  const { prefetchStates, prefetchCities } = usePrefetchCriticalData()
 
   function onClick(adjustment: number) {
     setGoal(Math.max(200, Math.min(400, goal + adjustment)));
   }
 
-  async function getState() {
-
-    setLoadingState(true);
-
-    const request = await axiosInterceptorInstance.get('/uf/paginate-without-auth', {
-      params: {
-        isActive: true,
-        page: 1,
-        perPage: 99999
-      }
-    })
-
-    if (request.status === 200) {
-
-      const data = request.data?.data;
-      setState(data)
-      setLoadingState(false);
-      return
-    }
-  }
-
-  async function getCity(event: any) {
-
-    const value = event?.target?.value;
-
-    setLoadingCity(true);
-
-    const request = await axiosInterceptorInstance.get(`/city/get-by-uf-without-auth`, {
-      params: {
-        id: value
-      }
-    });
-
-    if (request.status === 200) {
-      setCity(request.data)
-      setLoadingCity(false);
-      return
-    }
-  }
-
   async function setCookieFunction(event: any) {
-
     const value = event?.target?.value;
     const redirect = `home?city=${value}`;
 
     setLoading(true)
 
-    const request: any = await axiosInterceptorInstance.get(`/city/get-city-by-slug/${value}`);
+    try {
+      // Verificar se já está no cache
+      const cachedCity = queryClient.getQueryData(queryKeys.cityBySlug(value));
+      
+      if (cachedCity) {
+        router.push(redirect)
+        return
+      }
 
-    if (request.status >= 400) {
-      toast.error(request.error.message)
+      // Se não estiver no cache, fazer a requisição
+      const response = await axiosInterceptorInstance.get(`/city/get-city-by-slug/${value}`);
+      
+      if (response.status === 200) {
+        // Adicionar ao cache para próximas consultas
+        queryClient.setQueryData(queryKeys.cityBySlug(value), response.data);
+        router.push(redirect)
+      } else {
+        toast.error('Cidade não encontrada')
+      }
+    } catch (error: any) {
+      toast.error(error?.message || 'Erro ao buscar cidade')
+    } finally {
       setLoading(false)
-      return
-    }
-
-    if (request.status === 200) {
-      router.push(redirect)
     }
   }
 
-
   React.useEffect(() => {
-
-    const city = searchParams.get('city');
-
-    getState();
-  }, [])
+    // Pré-carregar dados críticos na inicialização
+    prefetchStates()
+    prefetchCities()
+  }, [prefetchStates, prefetchCities])
 
   return (
     <>

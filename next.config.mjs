@@ -14,6 +14,13 @@ const nextConfig = {
     ],
     domains: ['blog-alares.homolog-f2f-digital.xyz']
   },
+  // Configurações de cache para melhor performance
+  experimental: {
+    staleTimes: {
+      dynamic: 30, // 30 segundos para rotas dinâmicas
+      static: 180, // 3 minutos para rotas estáticas
+    },
+  },
   async headers() {
     return [
       {
@@ -42,6 +49,46 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'geolocation=(self), microphone=(), camera=(), fullscreen=(), payment=()',
+          },
+        ],
+      },
+      // Cache para assets estáticos
+      {
+        source: '/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Cache para imagens
+      {
+        source: '/_next/image(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Cache para API routes com dados estáticos
+      {
+        source: '/api/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=1800, stale-while-revalidate=3600',
+          },
+        ],
+      },
+      // Cache moderado para páginas
+      {
+        source: '/((?!api/).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=300, stale-while-revalidate=600',
           },
         ],
       },

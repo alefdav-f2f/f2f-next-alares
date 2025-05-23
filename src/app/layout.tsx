@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { register } from "swiper/element/bundle";
 import { GoogleTagManager } from "@next/third-parties/google";
+import QueryProvider from "./providers/QueryProvider";
 
 register();
 import "swiper/css";
@@ -142,18 +143,20 @@ export default function RootLayout({
 
       <body className={myFont.className}>
         <h1 className="text-[0px]">Alares | Internet que te leva mais longe</h1>
-        <Toaster position="top-right" />
-        <Suspense
-          fallback={
-            <>
-              <div className="h-[500px] flex justify-center items-center">
-                <LoadingAlares />
-              </div>
-            </>
-          }
-        >
-          <section className="max-w-screen">{children}</section>
-        </Suspense>
+        <QueryProvider>
+          <Toaster position="top-right" />
+          <Suspense
+            fallback={
+              <>
+                <div className="h-[500px] flex justify-center items-center">
+                  <LoadingAlares />
+                </div>
+              </>
+            }
+          >
+            <section className="max-w-screen">{children}</section>
+          </Suspense>
+        </QueryProvider>
       </body>
     </html>
   );
